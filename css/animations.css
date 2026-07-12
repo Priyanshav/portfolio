@@ -1,0 +1,147 @@
+/* =========================================
+   PRIYANSHU KUMAR — PORTFOLIO
+   Animations & Keyframes
+   ========================================= */
+
+/* ---------- Entry animations ---------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---------- Continuous animations ---------- */
+
+/* Spinning conic ring on avatar */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Gentle floating for avatar */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Pulsing green dot */
+@keyframes pulseDot {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(57, 255, 20, 0);
+  }
+}
+
+/* Glitch effect on hover */
+@keyframes glitch {
+  0%, 100% { text-shadow: none; clip-path: none; }
+  20% {
+    text-shadow: 3px 0 #a855f7, -3px 0 #f472b6;
+    clip-path: inset(10% 0 80% 0);
+  }
+  40% {
+    text-shadow: -3px 0 #00f5ff, 3px 0 #a855f7;
+    clip-path: inset(40% 0 40% 0);
+  }
+  60% {
+    text-shadow: 2px 0 #f472b6, -2px 0 #00f5ff;
+    clip-path: inset(80% 0 5% 0);
+  }
+  80% {
+    text-shadow: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.glitch:hover {
+  animation: glitch 0.55s ease;
+}
+
+/* Shimmer sweep on skill tags */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.skill-tag.shimmer {
+  background-image: linear-gradient(
+    90deg,
+    rgba(0,245,255,0.04) 0%,
+    rgba(0,245,255,0.15) 50%,
+    rgba(0,245,255,0.04) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.6s linear;
+}
+
+/* Number count-up fade */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scan line — decorative */
+@keyframes scanLine {
+  0%   { top: -4px; }
+  100% { top: 100%; }
+}
+
+/* Border trace around cards on hover */
+@keyframes borderTrace {
+  from { stroke-dashoffset: 800; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Typewriter cursor blink (used in typing.js) */
+.cursor {
+  display: inline-block;
+  color: var(--cyan);
+  animation: blink 1s step-end infinite;
+}
+
+/* Stagger delay utilities */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }

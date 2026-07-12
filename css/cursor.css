@@ -1,0 +1,58 @@
+/* =====================================================
+   ANIMATED CUSTOM CURSOR
+   ===================================================== */
+
+/* Hide the native cursor only once JS has activated the custom one
+   (and only on fine-pointer devices). */
+@media (pointer: fine) {
+  html.custom-cursor,
+  html.custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 9px;
+  height: 9px;
+  background: var(--cyan, #00f5ff);
+  box-shadow: 0 0 10px var(--cyan, #00f5ff), 0 0 22px rgba(0, 245, 255, 0.7);
+  transition: opacity 0.25s;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 2px solid rgba(0, 245, 255, 0.65);
+  box-shadow: 0 0 14px rgba(0, 245, 255, 0.25), inset 0 0 8px rgba(0, 245, 255, 0.12);
+  transition: width 0.22s ease, height 0.22s ease,
+    border-color 0.22s ease, background 0.22s ease, opacity 0.25s;
+}
+
+/* Grows and turns purple over anything interactive */
+.cursor-ring.is-hover {
+  width: 58px;
+  height: 58px;
+  border-color: var(--purple, #a855f7);
+  background: rgba(168, 85, 247, 0.14);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+/* Snaps inward on click */
+.cursor-ring.is-down {
+  width: 22px;
+  height: 22px;
+  border-color: var(--pink, #f472b6);
+}

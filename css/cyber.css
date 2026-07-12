@@ -1,0 +1,266 @@
+/* =====================================================
+   EXPERIENCE / CYBER SECTION
+   ===================================================== */
+.exp-sec { position: relative; overflow: hidden; }
+.exp-sec .container { position: relative; z-index: 3; }
+
+/* Animated cyber backdrop */
+.cyber-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.cyber-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.30;
+}
+.cyber-grid {
+  position: absolute;
+  inset: -2px;
+  background-image:
+    linear-gradient(rgba(0, 245, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.055) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 35%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse at 50% 35%, #000 55%, transparent 100%);
+  animation: gridPan 20s linear infinite;
+}
+@keyframes gridPan {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 46px 46px, 46px 46px; }
+}
+.cyber-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 190px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 245, 255, 0.09), transparent);
+  filter: blur(1px);
+  animation: scanMove 7s ease-in-out infinite;
+}
+@keyframes scanMove {
+  0%   { top: -190px; }
+  100% { top: 100%; }
+}
+/* Radar sweep */
+.radar {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.16);
+  opacity: 0.55;
+}
+.radar::before {
+  content: '';
+  position: absolute;
+  inset: 33%;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.16);
+}
+.radar::after {
+  content: '';
+  position: absolute;
+  inset: 16%;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.10);
+}
+.radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(0, 245, 255, 0.30), transparent 65%);
+  animation: spin 4s linear infinite;
+}
+
+/* =====================================================
+   EXPERIENCE CARD
+   ===================================================== */
+.exp-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.exp-card {
+  position: relative;
+  display: block;
+  padding: 34px 34px 30px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(11, 16, 32, 0.92), rgba(6, 9, 20, 0.94));
+  border: 1px solid rgba(0, 245, 255, 0.16);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.35s ease, box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+}
+.exp-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 18px;
+  background: linear-gradient(120deg, transparent, rgba(0, 245, 255, 0.5), rgba(168, 85, 247, 0.5), transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.exp-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 245, 255, 0.4);
+  box-shadow: 0 24px 60px -20px rgba(0, 245, 255, 0.35);
+}
+.exp-card:hover::before { opacity: 1; }
+
+/* sweeping shine */
+.exp-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.7s ease;
+}
+.exp-card:hover::after { left: 130%; }
+
+.exp-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.exp-logo {
+  flex: none;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  background: radial-gradient(circle at 30% 25%, rgba(0, 245, 255, 0.18), rgba(168, 85, 247, 0.12));
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  box-shadow: 0 0 22px -6px rgba(0, 245, 255, 0.5);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 22px -8px rgba(0, 245, 255, 0.45); }
+  50%      { box-shadow: 0 0 30px -4px rgba(168, 85, 247, 0.6); }
+}
+.exp-headtext { flex: 1; min-width: 0; }
+.exp-role-row { display: flex; align-items: center; gap: 8px; }
+.exp-role {
+  font-size: 1.28rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+.exp-arrow {
+  color: var(--cyan);
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+.exp-card:hover .exp-arrow { transform: translate(3px, -3px); }
+.exp-company {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--cyan);
+  margin: 3px 0 0;
+}
+.exp-badge {
+  flex: none;
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #7cf9d0;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 249, 208, 0.35);
+  background: rgba(124, 249, 208, 0.08);
+}
+.exp-points {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: grid;
+  gap: 13px;
+}
+.exp-points li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--text-dim, #b9c2d0);
+}
+.exp-points li::before {
+  content: '\25B8';
+  position: absolute;
+  left: 4px;
+  top: 0;
+  color: var(--cyan);
+}
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.exp-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cyan);
+  letter-spacing: 0.5px;
+}
+.exp-cta::after {
+  content: '\2192';
+  transition: transform 0.3s ease;
+}
+.exp-card:hover .exp-cta::after { transform: translateX(5px); }
+
+/* =====================================================
+   HERO PHOTO AVATAR
+   ===================================================== */
+.avatar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  border-radius: 50%;
+}
+/* Photo fills the ring and stays static (no floating motion). */
+.avatar-inner {
+  font-size: 0 !important;
+  animation: none !important;
+}
+
+/* =====================================================
+   RESPONSIVE + REDUCED MOTION
+   ===================================================== */
+@media (max-width: 640px) {
+  .radar { display: none; }
+  .exp-card { padding: 26px 20px 24px; }
+  .exp-head { flex-wrap: wrap; }
+  .exp-badge { order: 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cyber-grid, .cyber-scan, .radar-sweep, .exp-logo { animation: none !important; }
+  .cyber-canvas { display: none; }
+}
