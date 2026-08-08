@@ -112,11 +112,62 @@
     });
   }
 
+  /* ---- Query a 90-day public-event window from the GitHub API ---- */
+  function fetchPublicEventsWithinDays(days) {
+    var cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - days);
+    cutoff.setHours(0, 0, 0, 0);
+
+    var events = [];
+    var page = 1;
+
+    function pullPage() {
+      return fetch(API + '/users/' + USER + '/events/public?per_page=100&page=' + page)
+        .then(function (r) {
+          if (!r.ok) return [];
+          return r.json();
+        })
+        .catch(function () { return []; });
+    }
+
+    function walk() {
+      return pullPage().then(function (pageEvents) {
+        if (!Array.isArray(pageEvents) || !pageEvents.length) {
+          return events;
+        }
+
+        events = events.concat(pageEvents);
+
+        var lastEvent = pageEvents[pageEvents.length - 1];
+        if (!lastEvent || !lastEvent.created_at) {
+          return events;
+        }
+
+        var oldest = new Date(lastEvent.created_at);
+        if (oldest < cutoff || pageEvents.length < 100) {
+          return events;
+        }
+
+        page += 1;
+        return walk();
+      });
+    }
+
+    return walk().then(function (allEvents) {
+      return (allEvents || []).filter(function (ev) {
+        if (!ev || !ev.created_at) return false;
+        var created = new Date(ev.created_at);
+        return created >= cutoff;
+      });
+    });
+  }
+
   /* ---- Contribution heatmap from recent public events ---- */
   function renderHeatmap(events) {
     var wrap = $('gh-heatmap');
     if (!wrap) return;
-    var WEEKS = 14, DAYS = WEEKS * 7;
+
+    var DAYS = 90;
 
     // Bucket events by YYYY-MM-DD
     var byDay = {};
@@ -202,15 +253,21 @@
     Promise.all([
       fetch(API + '/users/' + USER).then(function (r) { return r.ok ? r.json() : Promise.reject('user'); }),
       fetch(API + '/users/' + USER + '/repos?per_page=100&sort=updated')
-        .then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }),
-      fetch(API + '/users/' + USER + '/events/public?per_page=100')
         .then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })
     ]).then(function (res) {
-      var user = res[0], repos = res[1] || [], events = res[2] || [];
-      renderMetrics(user, repos);
-      renderLangs(repos);
-      renderHeatmap(events);
-      setStatus('\u25CF Live from GitHub', true);
+      var user = res[0], repos = res[1] || [];
+
+      fetchPublicEventsWithinDays(90).then(function (events) {
+        renderMetrics(user, repos);
+        renderLangs(repos);
+        renderHeatmap(events);
+        setStatus('\u25CF Live from GitHub', true);
+      }).catch(function () {
+        renderMetrics(user, repos);
+        renderLangs(repos);
+        renderHeatmap([]);
+        setStatus('Showing saved stats (API unavailable)', false);
+      });
     }).catch(function () {
       renderMetricsFallback();
       renderLangs([]);
