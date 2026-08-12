@@ -15,7 +15,7 @@
   var API = 'https://backend-go.takeuforward.org/api/v1/shared/profile/dsa-progress/' + USER;
 
   /* Saved snapshot — used if the live API is unreachable/CORS-blocked. */
-  var FALLBACK = { solvedEasy: 122, solvedMedium: 38, solvedHard: 16 };
+  var FALLBACK = { solvedEasy: 130, solvedMedium: 38, solvedHard: 17 };
 
   /* TUF catalogue sizes (denominators shown on the profile page). */
   var TOTALS = { easy: 374, medium: 477, hard: 253 };
