@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/github-contributions.js": {
+      "maxDuration": 10
+    }
+  }
+}
