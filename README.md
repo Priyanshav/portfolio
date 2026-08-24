@@ -8,7 +8,7 @@ A personal portfolio website built with HTML, CSS, and JavaScript showcasing pro
 
 ## About
 
-This static portfolio is hosted on Render and includes:
+This portfolio is hosted on Render and includes:
 
 - animated UI interactions
 - responsive design
@@ -17,4 +17,17 @@ This static portfolio is hosted on Render and includes:
 
 ## Deployment
 
-The site is served as a static site from the repository root.
+The site is served by `server.js`, which also provides a small server-side proxy for
+GitHub's GraphQL contribution calendar.
+
+### Render deployment
+
+Configure the Render service as a web service with:
+
+- Build command: leave empty
+- Start command: `npm start`
+- Environment variable: `GITHUB_TOKEN` containing a GitHub token with API access
+- Optional environment variable: `GITHUB_USER` (defaults to `Priyanshav`)
+
+The token stays on the server and is never sent to the browser. Node.js 18 or newer
+is required.

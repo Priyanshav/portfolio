@@ -4,7 +4,7 @@
  *  - Fetches real profile + repo data from the public GitHub REST API
  *  - Animated metric counters (repos, stars, followers, following)
  *  - Top-language distribution bar built from the user's repositories
- *  - Contribution-style heatmap built from recent public activity
+ *  - Contribution heatmap built from GitHub's contribution calendar
  *  - Graceful fallback when the API is rate-limited or offline
  */
 (function () {
@@ -112,69 +112,25 @@
     });
   }
 
-  /* ---- Query a 90-day public-event window from the GitHub API ---- */
-  function fetchPublicEventsWithinDays(days) {
-    var cutoff = new Date();
-    cutoff.setDate(cutoff.getDate() - days);
-    cutoff.setHours(0, 0, 0, 0);
-
-    var events = [];
-    var page = 1;
-
-    function pullPage() {
-      return fetch(API + '/users/' + USER + '/events/public?per_page=100&page=' + page)
-        .then(function (r) {
-          if (!r.ok) return [];
-          return r.json();
-        })
-        .catch(function () { return []; });
-    }
-
-    function walk() {
-      return pullPage().then(function (pageEvents) {
-        if (!Array.isArray(pageEvents) || !pageEvents.length) {
-          return events;
-        }
-
-        events = events.concat(pageEvents);
-
-        var lastEvent = pageEvents[pageEvents.length - 1];
-        if (!lastEvent || !lastEvent.created_at) {
-          return events;
-        }
-
-        var oldest = new Date(lastEvent.created_at);
-        if (oldest < cutoff || pageEvents.length < 100) {
-          return events;
-        }
-
-        page += 1;
-        return walk();
+  /* ---- Query GitHub's contribution calendar through our server proxy ---- */
+  function fetchContributions(days) {
+    return fetch('/api/github-contributions?days=' + days)
+      .then(function (r) {
+        if (!r.ok) return Promise.reject('contributions');
+        return r.json();
       });
-    }
-
-    return walk().then(function (allEvents) {
-      return (allEvents || []).filter(function (ev) {
-        if (!ev || !ev.created_at) return false;
-        var created = new Date(ev.created_at);
-        return created >= cutoff;
-      });
-    });
   }
 
-  /* ---- Contribution heatmap from recent public events ---- */
-  function renderHeatmap(events) {
+  /* ---- Contribution heatmap from GitHub's daily contribution counts ---- */
+  function renderHeatmap(data) {
     var wrap = $('gh-heatmap');
     if (!wrap) return;
 
     var DAYS = 90;
 
-    // Bucket events by YYYY-MM-DD
     var byDay = {};
-    (events || []).forEach(function (ev) {
-      if (!ev.created_at) return;
-      var d = ev.created_at.slice(0, 10);
-      byDay[d] = (byDay[d] || 0) + 1;
+    (data && data.days || []).forEach(function (day) {
+      if (day && day.date) byDay[day.date] = Number(day.contributionCount) || 0;
     });
 
     var today = new Date();
@@ -241,7 +197,7 @@
     wrap.appendChild(grid);
 
     var totalNode = $('gh-contrib-total');
-    if (totalNode) totalNode.textContent = total + ' events · 90 days';
+    if (totalNode) totalNode.textContent = total + ' contributions · 90 days';
   }
 
   /* ---- Loader ---- */
@@ -257,21 +213,21 @@
     ]).then(function (res) {
       var user = res[0], repos = res[1] || [];
 
-      fetchPublicEventsWithinDays(90).then(function (events) {
+      fetchContributions(90).then(function (contributions) {
         renderMetrics(user, repos);
         renderLangs(repos);
-        renderHeatmap(events);
+        renderHeatmap(contributions);
         setStatus('\u25CF Live from GitHub', true);
       }).catch(function () {
         renderMetrics(user, repos);
         renderLangs(repos);
-        renderHeatmap([]);
-        setStatus('Showing saved stats (API unavailable)', false);
+        renderHeatmap({ days: [] });
+        setStatus('Contribution data unavailable', false);
       });
     }).catch(function () {
       renderMetricsFallback();
       renderLangs([]);
-      renderHeatmap([]);
+      renderHeatmap({ days: [] });
       setStatus('Showing saved stats (API unavailable)', false);
     });
   }
