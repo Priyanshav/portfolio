@@ -1,0 +1,444 @@
+/* =========================================
+   PREMIUM ENHANCEMENTS
+   - Spotlight cards, magnetic btns, text scramble,
+     timeline, ripple, parallax, enhanced glows
+   ========================================= */
+
+/* ---------- Spotlight Project Cards ---------- */
+.proj-card {
+  --mx: 50%;
+  --my: 50%;
+}
+
+.proj-card .spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    280px circle at var(--mx) var(--my),
+    rgba(0,245,255,0.1),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.proj-card:hover .spotlight { opacity: 1; }
+
+/* ---------- Magnetic Button Wrapper ---------- */
+.btn-mag {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+}
+
+/* ---------- Text Scramble Headings ---------- */
+.sec-title { position: relative; }
+
+/* ---------- Section Number Badge ---------- */
+.sec-num {
+  position: relative;
+  display: inline-block;
+}
+
+.sec-num::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cyan);
+  transition: width 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+
+.sec-head.up .sec-num::after { width: 100%; }
+
+/* ---------- Enhanced Skill Tags ---------- */
+.skill-tag {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-tag::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0,245,255,0.15) 50%,
+    transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.skill-tag:hover::after { transform: translateX(100%); }
+
+/* ---------- Experience Timeline ---------- */
+.exp-timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--cyan), var(--purple), transparent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.2s cubic-bezier(0.23,1,0.32,1);
+}
+
+.exp-timeline.in-view::before { transform: scaleY(1); }
+
+.exp-dot {
+  position: absolute;
+  left: 3px;
+  top: 30px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(0,245,255,0.15), 0 0 16px rgba(0,245,255,0.5);
+  animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(0,245,255,0.15), 0 0 16px rgba(0,245,255,0.4); }
+  50%       { box-shadow: 0 0 0 10px rgba(0,245,255,0.05), 0 0 32px rgba(0,245,255,0.6); }
+}
+
+/* ---------- Ripple Effect ---------- */
+.ripple-host { position: relative; overflow: hidden; }
+
+.ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(0,245,255,0.18);
+  animation: rippleAnim 0.65s linear;
+  pointer-events: none;
+}
+
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ---------- Enhanced Hero Parallax Container ---------- */
+.hero-inner {
+  perspective: 1000px;
+}
+
+.hero-text {
+  will-change: transform;
+}
+
+/* ---------- Avatar Morphing Glow ---------- */
+.avatar-ring {
+  filter: drop-shadow(0 0 20px rgba(0,245,255,0.2));
+}
+
+.avatar-ring::before {
+  animation: spin 6s linear infinite, ringGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes ringGlow {
+  from { opacity: 0.8; }
+  to   { opacity: 1;   filter: brightness(1.3); }
+}
+
+/* Floating tech icons around avatar */
+.avatar-orbit {
+  position: absolute;
+  inset: -40px;
+  pointer-events: none;
+}
+
+.orbit-icon {
+  position: absolute;
+  font-size: 1.1rem;
+  animation: orbit var(--dur, 8s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0.7;
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(var(--r, 140px)) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(var(--r, 140px)) rotate(-360deg); }
+}
+
+/* ---------- Counter Animation ---------- */
+.stat-num-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.stat-num-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  transform: scaleX(0);
+  transition: transform 0.6s 0.8s ease;
+}
+
+.h-stat.counted .stat-num-wrap::after { transform: scaleX(1); }
+
+/* ---------- Gradient text on section number ---------- */
+.sec-num {
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Override for the after pseudo since it can't use -webkit-text-fill */
+.sec-num::after { background: var(--cyan); }
+
+/* ---------- Cyber Grid Pulse on Experience bg ---------- */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+/* ---------- Enhanced Project Featured Card ---------- */
+.proj-featured {
+  background:
+    radial-gradient(70% 90% at 0% 50%, rgba(0,245,255,0.07), transparent 55%),
+    radial-gradient(60% 80% at 100% 50%, rgba(168,85,247,0.07), transparent 55%),
+    var(--bg-card);
+}
+
+/* ---------- Neon underline links ---------- */
+.stats-header a {
+  position: relative;
+}
+
+.stats-header a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.stats-header a:hover::after { transform: scaleX(1); text-decoration: none; }
+.stats-header a:hover { text-decoration: none; }
+
+/* ---------- Enhanced contact cards ---------- */
+.contact-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--cyan), var(--purple));
+  transform: scaleY(0);
+  transition: transform 0.3s cubic-bezier(0.23,1,0.32,1);
+  transform-origin: bottom;
+}
+
+.contact-card:hover::after { transform: scaleY(1); }
+
+/* ---------- Footer enhanced ---------- */
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; right: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  box-shadow: 0 0 12px rgba(0,245,255,0.4);
+  transition: left 0.8s, right 0.8s;
+}
+
+footer.in-view::before {
+  left: 0;
+  right: 0;
+}
+
+/* ---------- Badge counter on nav ---------- */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* ---------- Noise overlay (subtle texture) ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ---------- Cert card hover 3D ---------- */
+.cert-card {
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.23,1,0.32,1),
+              border-color 0.3s, box-shadow 0.4s;
+}
+
+/* ---------- Stat cards animated border ---------- */
+.gh-card {
+  position: relative;
+}
+
+.gh-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(0,245,255,0.4), rgba(168,85,247,0.4));
+  opacity: 0;
+  transition: opacity 0.35s;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.gh-card:hover::after { opacity: 1; }
+
+/* ---------- Glowing hero description emphasis ---------- */
+.hero-desc strong {
+  position: relative;
+  display: inline;
+}
+
+.hero-desc strong::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--cyan);
+  opacity: 0.4;
+}
+
+/* ---------- Marquee enhanced ---------- */
+.marquee-item {
+  transition: color 0.2s;
+}
+
+.marquee-item:hover { color: var(--cyan); cursor: default; }
+
+/* ---------- Section entrance: clip-path wipe ---------- */
+.sec-head {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.23,1,0.32,1);
+}
+
+.sec-head.up {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* Override the base reveal transition for sec-head since we use clip-path */
+.sec-head.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Glowing active nav dot ---------- */
+.nav-links a.active {
+  position: relative;
+}
+
+/* ---------- Stagger hero stats ---------- */
+.h-stat:nth-child(1) { animation-delay: 1.2s; }
+.h-stat:nth-child(2) { animation-delay: 1.4s; }
+.h-stat:nth-child(3) { animation-delay: 1.6s; }
+
+/* ---------- Button shine sweep ---------- */
+.btn-primary,
+.btn-outline,
+.btn-resume {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after,
+.btn-outline::after,
+.btn-resume::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+}
+
+.btn-primary:hover::after,
+.btn-outline:hover::after,
+.btn-resume:hover::after {
+  left: 140%;
+}
+
+/* ---------- Hero tag enhanced ---------- */
+.hero-tag {
+  background: rgba(0,245,255,0.06);
+  border: 1px solid rgba(0,245,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  gap: 10px;
+}
+
+/* ---------- Heatmap cell hover tooltip ---------- */
+.gh-hm-cell {
+  cursor: pointer;
+  position: relative;
+}
+
+.gh-hm-cell:hover {
+  transform: scale(1.5);
+  z-index: 2;
+}
+
+/* ---------- Scrollbar enhanced ---------- */
+::-webkit-scrollbar-thumb:hover { background: var(--purple); }
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  .orbit-icon, .loader-scan { animation: none; }
+  .sec-head { clip-path: none; }
+  .sec-head.reveal { opacity: 0; transform: translateY(30px); }
+  .sec-head.reveal.up { opacity: 1; transform: none; }
+}

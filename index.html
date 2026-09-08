@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Priyanshu Kumar — Software Development Engineer & Cybersecurity Expert. Portfolio showcasing projects, certifications, and skills." />
+  <meta name="description" content="Priyanshu Kumar — Software Development Engineer &amp; Cybersecurity Expert." />
   <meta name="author" content="Priyanshu Kumar" />
-  <title>Priyanshu Kumar — Dev & Cybersecurity</title>
+  <title>Priyanshu Kumar — Dev &amp; Cybersecurity</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/animations.css" />
@@ -22,99 +19,114 @@
   <link rel="stylesheet" href="css/cyber.css" />
   <link rel="stylesheet" href="css/tuf.css" />
   <link rel="stylesheet" href="css/cursor.css" />
+  <link rel="stylesheet" href="css/loader.css" />
+  <link rel="stylesheet" href="css/premium.css" />
+  <!-- 3D layer -->
+  <link rel="stylesheet" href="css/three-d.css" />
+  <!-- Cyber theme: overrides ALL blue → terminal green -->
+  <link rel="stylesheet" href="css/cyber-theme.css" />
+  <!-- Spacing fix: clips decorative overflow, enforces explicit heights (MUST be last) -->
+  <link rel="stylesheet" href="css/spacing-fix.css" />
 </head>
 <body>
+
+  <!-- =============================================
+       LOADING SCREEN
+  ============================================= -->
+  <div id="loader" role="status" aria-label="Loading portfolio">
+    <canvas id="loader-matrix"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">&lt;<span>PK</span>/&gt;</div>
+      <div class="loader-terminal" aria-hidden="true">
+        <div class="terminal-lines" id="terminal-lines"></div>
+        <span class="terminal-cursor">_</span>
+      </div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <div class="loader-pct" id="loader-pct" aria-live="polite">0%</div>
+    </div>
+  </div>
 
   <!-- Scroll progress -->
   <div class="scroll-progress" id="scroll-progress"></div>
 
-  <!-- Animated background canvas -->
+  <!-- Background canvas -->
   <canvas id="particles"></canvas>
   <div class="grid-bg"></div>
   <div id="cursor-glow"></div>
 
   <!-- =============================================
-       NAVBAR
+       NAVBAR  (Experience link removed)
   ============================================= -->
   <nav id="navbar">
     <a href="#hero" class="nav-logo glitch">&lt;<span>PK</span>/&gt;</a>
 
     <ul class="nav-links">
-      <li><a href="#about"      data-n="01.">About</a></li>
-      <li><a href="#experience" data-n="02.">Experience</a></li>
-      <li><a href="#projects"   data-n="03.">Projects</a></li>
-      <li><a href="#stats"      data-n="04.">Stats</a></li>
-      <li><a href="#certs"      data-n="05.">Certs</a></li>
-      <li><a href="#contact"    data-n="06.">Contact</a></li>
+      <li><a href="#about"    data-n="01.">About</a></li>
+      <li><a href="#projects" data-n="02.">Projects</a></li>
+      <li><a href="#stats"    data-n="03.">Stats</a></li>
+      <li><a href="#certs"    data-n="04.">Certs</a></li>
+      <li><a href="#contact"  data-n="05.">Contact</a></li>
     </ul>
 
     <div class="nav-right">
-      <a href="assets/Priyanshu_Kumar_Resume.pdf" download class="btn-resume">
-        &#8595;&nbsp;Resume
-      </a>
+      <a href="assets/Priyanshu_Kumar_Resume.pdf" download class="btn-resume">&#8595;&nbsp;Resume</a>
       <button class="hamburger" id="menu-btn" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#about"      onclick="closeMobileMenu()">01. About</a>
-    <a href="#experience" onclick="closeMobileMenu()">02. Experience</a>
-    <a href="#projects"   onclick="closeMobileMenu()">03. Projects</a>
-    <a href="#stats"      onclick="closeMobileMenu()">04. Stats</a>
-    <a href="#certs"      onclick="closeMobileMenu()">05. Certs</a>
-    <a href="#contact"    onclick="closeMobileMenu()">06. Contact</a>
-    <a href="assets/Priyanshu_Kumar_Resume.pdf" download onclick="closeMobileMenu()">
-      &#8595; Download Resume
-    </a>
+    <a href="#about"    onclick="closeMobileMenu()">01. About</a>
+    <a href="#projects" onclick="closeMobileMenu()">02. Projects</a>
+    <a href="#stats"    onclick="closeMobileMenu()">03. Stats</a>
+    <a href="#certs"    onclick="closeMobileMenu()">04. Certs</a>
+    <a href="#contact"  onclick="closeMobileMenu()">05. Contact</a>
+    <a href="assets/Priyanshu_Kumar_Resume.pdf" download onclick="closeMobileMenu()">&#8595; Download Resume</a>
   </div>
 
   <!-- =============================================
        HERO
   ============================================= -->
   <section id="hero">
+    <canvas id="three-hero" aria-hidden="true"></canvas>
     <div class="container">
       <div class="hero-inner">
 
-        <!-- Left: Text -->
         <div class="hero-text">
-          <p class="hero-tag">
-            <span class="dot"></span>
-            AVAILABLE FOR OPPORTUNITIES
+          <p class="term-prompt">
+            <span class="tp-user">priyanshav</span><span class="tp-at">@</span><span class="tp-host">kali</span>:<span class="tp-dir">~/portfolio</span> <span class="tp-dollar">$</span> whoami
           </p>
-
+          <p class="hero-tag">
+            <span class="dot"></span>AVAILABLE FOR OPPORTUNITIES
+          </p>
           <h1 class="hero-name">
             Hi, I&rsquo;m
             <span class="name-line glitch">Priyanshu Kumar</span>
           </h1>
-
           <p class="hero-role">
             <span class="typed" id="typedRole"></span><span class="cursor">|</span>
           </p>
-
           <p class="hero-desc">
             CS undergraduate with hands-on experience in
-            <strong>Cybersecurity</strong>,
-            <strong>Software Development</strong>, and
+            <strong>Cybersecurity</strong>, <strong>Software Development</strong>, and
             <strong>AI-powered applications</strong>.
-            I build secure, scalable systems &mdash; and hunt threats
-            before they hunt you.
+            I build secure, scalable systems &mdash; and hunt threats before they hunt you.
           </p>
-
           <div class="hero-btns">
             <a href="#projects" class="btn-primary">View My Work</a>
             <a href="#contact"  class="btn-outline">Let&rsquo;s Connect</a>
           </div>
         </div>
 
-        <!-- Right: Avatar -->
         <div class="hero-visual">
           <div class="avatar-ring">
-            <div class="avatar-inner"><img src="assets/profile.jpeg" alt="Priyanshu Kumar" class="avatar-photo" /></div>
+            <div class="avatar-inner">
+              <img src="assets/profile.jpeg" alt="Priyanshu Kumar" class="avatar-photo" />
+            </div>
           </div>
           <div class="hero-stats">
             <div class="h-stat">
@@ -136,6 +148,7 @@
     </div>
   </section>
 
+
   <!-- =============================================
        TECH MARQUEE
   ============================================= -->
@@ -152,7 +165,6 @@
       <span class="marquee-item">Nmap</span>
       <span class="marquee-item">Hugging Face</span>
       <span class="marquee-item">PostgreSQL</span>
-      <!-- duplicate for seamless loop -->
       <span class="marquee-item">Python</span>
       <span class="marquee-item">Cybersecurity</span>
       <span class="marquee-item">Machine Learning</span>
@@ -168,43 +180,36 @@
   </div>
 
   <!-- =============================================
-       ABOUT
+       01. ABOUT
   ============================================= -->
   <section id="about" class="sec sec-alt">
     <div class="container">
-
-      <div class="sec-head reveal">
+      <div class="sec-head reveal up">
         <p class="sec-num">01. ABOUT</p>
         <h2 class="sec-title">Who I Am</h2>
         <div class="sec-line"></div>
       </div>
 
       <div class="about-grid">
-
-        <!-- Bio -->
         <div class="about-text reveal-left">
           <p>
             I&rsquo;m a <strong>Computer Science undergraduate</strong> at NIET, Greater Noida,
             passionate about building intelligent, secure systems that solve real problems.
           </p>
           <p>
-            I&rsquo;ve built a production RAG-based <strong>Medical AI Chatbot</strong> that uses
-            Sentence Transformers and FAISS to search medical PDFs and answer queries,
-            deployed live on Hugging Face Spaces. I&rsquo;ve also built a
-            <strong>Customer Data Transformer</strong> that extracts customer details from
-            resumes and streamlines data processing through an intuitive web application.
+            I&rsquo;ve built a production RAG-based <strong>Medical AI Chatbot</strong> using
+            Sentence Transformers and FAISS, deployed on Hugging Face Spaces. I&rsquo;ve also
+            built a <strong>Customer Data Transformer</strong> that streamlines data pipelines
+            through an intuitive web application.
           </p>
           <p>
-            I&rsquo;m skilled in <strong>Docker</strong>, object-oriented programming, and
-            <strong>Java</strong>, while currently learning <strong>SQL</strong> and
-            <strong>Computer Networks</strong> to strengthen my software and systems
-            development foundations.
+            Skilled in <strong>Docker</strong>, OOP, and <strong>Java</strong>, while
+            deepening knowledge in <strong>SQL</strong> and <strong>Computer Networks</strong>.
           </p>
           <p>
             The best engineers don&rsquo;t just build &mdash; they think like attackers
             to <strong>build unbreakable</strong>.
           </p>
-
           <div class="edu-card">
             <span class="icon">&#x1F393;</span>
             <div class="edu-info">
@@ -215,334 +220,306 @@
           </div>
         </div>
 
-        <!-- Skills -->
-        <div class="skills-grid reveal-right">
-          <div class="skill-group">
-            <h4>Languages</h4>
-            <div class="skill-tags">
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">Java</span>
-              <span class="skill-tag">SQL</span>
-              <span class="skill-tag">HTML5</span>
-              <span class="skill-tag">CSS3</span>
-            </div>
+        <!-- 3D Skills Sphere -->
+        <div class="reveal-right">
+          <div class="skills-sphere-wrap">
+            <div id="skills-sphere" aria-label="3D skills cloud"></div>
           </div>
-
-          <div class="skill-group">
-            <h4>Cybersecurity</h4>
-            <div class="skill-tags">
-              <span class="skill-tag">Wireshark</span>
-              <span class="skill-tag">Nmap</span>
-              <span class="skill-tag">Kali Linux</span>
-              <span class="skill-tag">John the Ripper</span>
-              <span class="skill-tag">Cryptography</span>
-              <span class="skill-tag">Network Security</span>
+          <div class="skills-grid" style="margin-top:24px;">
+            <div class="skill-group">
+              <h4>Languages</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+              </div>
             </div>
-          </div>
-
-          <div class="skill-group">
-            <h4>AI &amp; Frameworks</h4>
-            <div class="skill-tags">
-              <span class="skill-tag">LangChain</span>
-              <span class="skill-tag">Streamlit</span>
-              <span class="skill-tag">Flask</span>
-              <span class="skill-tag">Scikit-learn</span>
-              <span class="skill-tag">REST APIs</span>
-              <span class="skill-tag">Hugging Face</span>
+            <div class="skill-group">
+              <h4>Cybersecurity</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Wireshark</span>
+                <span class="skill-tag">Nmap</span>
+                <span class="skill-tag">Kali Linux</span>
+                <span class="skill-tag">John the Ripper</span>
+                <span class="skill-tag">Cryptography</span>
+                <span class="skill-tag">Network Security</span>
+              </div>
             </div>
-          </div>
-
-          <div class="skill-group">
-            <h4>Tools &amp; Infra</h4>
-            <div class="skill-tags">
-              <span class="skill-tag">Git / GitHub</span>
-              <span class="skill-tag">Linux</span>
-              <span class="skill-tag">PostgreSQL</span>
-              <span class="skill-tag">MS SQL</span>
-              <span class="skill-tag">Docker</span>
+            <div class="skill-group">
+              <h4>AI &amp; Frameworks</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">LangChain</span>
+                <span class="skill-tag">Streamlit</span>
+                <span class="skill-tag">Flask</span>
+                <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">Hugging Face</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h4>Tools &amp; Infra</h4>
+              <div class="skill-tags">
+                <span class="skill-tag">Git / GitHub</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">MS SQL</span>
+                <span class="skill-tag">Docker</span>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- =============================================
-       EXPERIENCE
-  ============================================= -->
-  <section id="experience" class="sec exp-sec">
-    <div class="cyber-bg" aria-hidden="true">
-      <canvas id="cyberCanvas" class="cyber-canvas"></canvas>
-      <div class="cyber-grid"></div>
-      <div class="cyber-scan"></div>
-      <div class="radar"><span class="radar-sweep"></span></div>
-    </div>
-
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="sec-num">02. EXPERIENCE</p>
-        <h2 class="sec-title">Where I&rsquo;ve Worked</h2>
-        <div class="sec-line"></div>
-      </div>
-
-      <div class="exp-wrap">
-        <a
-          href="https://www.xorvotech.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="exp-card reveal"
-          data-tilt
-        >
-          <div class="exp-head">
-            <div class="exp-logo">&#x1F6E1;&#xFE0F;</div>
-            <div class="exp-headtext">
-              <div class="exp-role-row">
-                <h3 class="exp-role">Cybersecurity Intern</h3>
-                <span class="exp-arrow">&#8599;</span>
-              </div>
-              <p class="exp-company">Xorvo Technologies Pvt. Ltd.</p>
-            </div>
-            <span class="exp-badge">Internship</span>
-          </div>
-          <ul class="exp-points">
-            <li>Resolved customer technical issues through remote troubleshooting, ensuring timely issue resolution and high customer satisfaction.</li>
-            <li>Guided users through product configuration, installation, and troubleshooting while providing clear technical explanations.</li>
-            <li>Collaborated with engineering and cybersecurity teams to escalate complex issues and ensure prompt resolution.</li>
-            <li>Documented support cases, maintained issue logs, and created technical documentation to improve knowledge sharing and support efficiency.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="proj-tag">Remote Troubleshooting</span>
-            <span class="proj-tag">Technical Support</span>
-            <span class="proj-tag">Incident Escalation</span>
-            <span class="proj-tag">Documentation</span>
-          </div>
-          <span class="exp-cta">Visit Xorvo Technologies</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- =============================================
-       PROJECTS
+       02. PROJECTS  — 2×2 grid, 3D flip cards
+       Hover = flip on desktop | Tap = flip on mobile
   ============================================= -->
   <section id="projects" class="sec">
     <div class="container">
-
-      <div class="sec-head reveal">
-        <p class="sec-num">03. PROJECTS</p>
+      <div class="sec-head reveal up">
+        <p class="sec-num">02. PROJECTS</p>
         <h2 class="sec-title">Things I&rsquo;ve Built</h2>
         <div class="sec-line"></div>
       </div>
 
+      <!-- projects-grid is forced to 2 columns in three-d.css -->
       <div class="projects-grid">
 
-        <!-- Featured: AI SOC -->
-        <div class="proj-card proj-featured reveal">
-          <div class="proj-img-wrap">
-            <div
-              class="proj-thumb"
-              style="background: linear-gradient(135deg, #050810, #120a1e);"
-            >&#x1F6E1;&#xFE0F;</div>
-            <div class="proj-img-overlay"></div>
-            <span class="badge-soon">&#x1F512; COMING SOON</span>
-          </div>
-          <div class="proj-body">
-            <p class="featured-lbl">&#9733; FLAGSHIP PROJECT</p>
-            <div class="proj-top">
-              <span class="proj-icon">&#x1F510;</span>
-              <span class="proj-arrow">&#8599;</span>
+        <!-- ─ Card 1: AI SOC Platform ─ -->
+        <div class="proj-card-3d reveal">
+          <div class="proj-card-inner">
+            <div class="proj-card-front proj-card">
+              <div class="proj-img-wrap">
+                <div class="proj-thumb" style="background:linear-gradient(135deg,#050810,#120a1e);">&#x1F6E1;&#xFE0F;</div>
+                <div class="proj-img-overlay"></div>
+                <span class="badge-soon">&#x1F512; COMING SOON</span>
+              </div>
+              <div class="proj-body">
+                <p class="featured-lbl">&#9733; FLAGSHIP PROJECT</p>
+                <div class="proj-top">
+                  <span class="proj-icon">&#x1F510;</span>
+                  <span class="proj-arrow">&#8599;</span>
+                </div>
+                <h3 class="proj-name">AI-Powered SOC Platform</h3>
+                <p class="proj-desc">
+                  Full-stack cybersecurity monitoring with ML alert classification,
+                  Wazuh SIEM, Suricata IDS, MITRE ATT&amp;CK, and LLM incident reports.
+                </p>
+                <div class="proj-tags">
+                  <span class="proj-tag">Python</span>
+                  <span class="proj-tag">Flask</span>
+                  <span class="proj-tag">Wazuh</span>
+                  <span class="proj-tag">Scikit-learn</span>
+                  <span class="proj-tag">Anthropic API</span>
+                </div>
+              </div>
+              <div class="front-flip-hint">&#8635; hover to flip</div>
             </div>
-            <h3 class="proj-name">AI-Powered SOC Platform</h3>
-            <p class="proj-desc">
-              Full-stack cybersecurity monitoring platform with ML alert classification
-              (RandomForest + Isolation Forest), Wazuh SIEM, Suricata IDS, MITRE ATT&amp;CK
-              integration, and an LLM-driven AI Security Chatbot with incident report generation.
-            </p>
-            <div class="proj-tags">
-              <span class="proj-tag">Python</span>
-              <span class="proj-tag">Flask</span>
-              <span class="proj-tag">Scikit-learn</span>
-              <span class="proj-tag">Wazuh</span>
-              <span class="proj-tag">Suricata</span>
-              <span class="proj-tag">Anthropic API</span>
-              <span class="proj-tag">Chart.js</span>
+            <div class="proj-card-back">
+              <div class="back-icon">&#x1F510;</div>
+              <div class="back-title">AI-Powered SOC Platform</div>
+              <div class="back-desc">
+                RandomForest + Isolation Forest alert classification &middot; Wazuh SIEM
+                &middot; Suricata IDS &middot; MITRE ATT&amp;CK mapping &middot; LLM report generation.
+              </div>
+              <div class="back-tags">
+                <span class="back-tag">Python</span><span class="back-tag">Flask</span>
+                <span class="back-tag">Scikit-learn</span><span class="back-tag">Wazuh</span>
+                <span class="back-tag">Suricata</span><span class="back-tag">Anthropic API</span>
+                <span class="back-tag">Chart.js</span>
+              </div>
+              <div class="back-link-disabled">&#x1F512; Coming Soon</div>
+              <div class="back-flip-hint">&#8635; hover to flip back</div>
             </div>
           </div>
         </div>
 
-        <!-- Medical AI Chatbot -->
-        <a
-          href="https://huggingface.co/spaces/Priyanshav/medical-chatbot"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="proj-card reveal delay-1"
-        >
-          <div class="proj-img-wrap">
-            <div
-              class="proj-thumb"
-              style="background: linear-gradient(135deg, #0a1628, #081424);"
-            >&#x1F3E5;</div>
-            <div class="proj-img-overlay"></div>
-            <span class="badge-live">LIVE</span>
-          </div>
-          <div class="proj-body">
-            <div class="proj-top">
-              <span class="proj-icon">&#x1F916;</span>
-              <span class="proj-arrow">&#8599;</span>
+        <!-- ─ Card 2: Medical AI Chatbot ─ -->
+        <div class="proj-card-3d reveal delay-1">
+          <div class="proj-card-inner">
+            <div class="proj-card-front proj-card">
+              <div class="proj-img-wrap">
+                <div class="proj-thumb" style="background:linear-gradient(135deg,#0a1628,#081424);">&#x1F3E5;</div>
+                <div class="proj-img-overlay"></div>
+                <span class="badge-live">LIVE</span>
+              </div>
+              <div class="proj-body">
+                <div class="proj-top">
+                  <span class="proj-icon">&#x1F916;</span>
+                  <span class="proj-arrow">&#8599;</span>
+                </div>
+                <h3 class="proj-name">Medical AI Chatbot</h3>
+                <p class="proj-desc">
+                  LLM-powered RAG chatbot for medical queries. Sentence Transformers
+                  + FAISS for semantic search over medical PDFs.
+                </p>
+                <div class="proj-tags">
+                  <span class="proj-tag">Python</span>
+                  <span class="proj-tag">LangChain</span>
+                  <span class="proj-tag">Groq</span>
+                  <span class="proj-tag">FAISS</span>
+                  <span class="proj-tag">Streamlit</span>
+                </div>
+              </div>
+              <div class="front-flip-hint">&#8635; hover to flip</div>
             </div>
-            <h3 class="proj-name">Medical AI Chatbot</h3>
-            <p class="proj-desc">
-              LLM-powered RAG chatbot for medical queries. Uses Sentence Transformers
-              + FAISS for semantic search over medical PDFs. Deployed live on
-              Hugging Face Spaces.
-            </p>
-            <div class="proj-tags">
-              <span class="proj-tag">Python</span>
-              <span class="proj-tag">LangChain</span>
-              <span class="proj-tag">Groq</span>
-              <span class="proj-tag">Hugging Face</span>
-              <span class="proj-tag">Streamlit</span>
-              <span class="proj-tag">FAISS</span>
+            <div class="proj-card-back">
+              <div class="back-icon">&#x1F916;</div>
+              <div class="back-title">Medical AI Chatbot</div>
+              <div class="back-desc">
+                Deployed on Hugging Face Spaces &middot; FAISS vector store &middot;
+                Groq LLM &middot; Sentence Transformers &middot; Streamlit UI.
+              </div>
+              <div class="back-tags">
+                <span class="back-tag">Python</span><span class="back-tag">LangChain</span>
+                <span class="back-tag">Groq</span><span class="back-tag">Hugging Face</span>
+                <span class="back-tag">Streamlit</span><span class="back-tag">FAISS</span>
+              </div>
+              <a href="https://huggingface.co/spaces/Priyanshav/medical-chatbot"
+                 target="_blank" rel="noopener noreferrer" class="back-link">&#8599; View Live</a>
+              <div class="back-flip-hint">&#8635; hover to flip back</div>
             </div>
           </div>
-        </a>
+        </div>
 
-        <!-- Customer Data Transformer -->
-        <a
-          href="https://customer-data-transformer.onrender.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="proj-card reveal delay-2"
-        >
-          <div class="proj-img-wrap">
-            <div
-              class="proj-thumb"
-              style="background: linear-gradient(135deg, #0a180a, #0d2010);"
-            >&#x1F4CA;</div>
-            <div class="proj-img-overlay"></div>
-            <span class="badge-live">LIVE</span>
-          </div>
-          <div class="proj-body">
-            <div class="proj-top">
-              <span class="proj-icon">&#x2699;&#xFE0F;</span>
-              <span class="proj-arrow">&#8599;</span>
+        <!-- ─ Card 3: Customer Data Transformer ─ -->
+        <div class="proj-card-3d reveal delay-2">
+          <div class="proj-card-inner">
+            <div class="proj-card-front proj-card">
+              <div class="proj-img-wrap">
+                <div class="proj-thumb" style="background:linear-gradient(135deg,#0a180a,#0d2010);">&#x1F4CA;</div>
+                <div class="proj-img-overlay"></div>
+                <span class="badge-live">LIVE</span>
+              </div>
+              <div class="proj-body">
+                <div class="proj-top">
+                  <span class="proj-icon">&#x2699;&#xFE0F;</span>
+                  <span class="proj-arrow">&#8599;</span>
+                </div>
+                <h3 class="proj-name">Customer Data Transformer</h3>
+                <p class="proj-desc">
+                  Web app for transforming, cleaning, and processing customer datasets.
+                  Streamlines data pipeline workflows with an intuitive UI on Render.
+                </p>
+                <div class="proj-tags">
+                  <span class="proj-tag">Python</span>
+                  <span class="proj-tag">REST API</span>
+                  <span class="proj-tag">PostgreSQL</span>
+                  <span class="proj-tag">Render</span>
+                </div>
+              </div>
+              <div class="front-flip-hint">&#8635; hover to flip</div>
             </div>
-            <h3 class="proj-name">Customer Data Transformer</h3>
-            <p class="proj-desc">
-              Web application for transforming, cleaning, and processing customer
-              datasets. Streamlines data pipeline workflows with an intuitive UI
-              deployed on Render.
-            </p>
-            <div class="proj-tags">
-              <span class="proj-tag">Python</span>
-              <span class="proj-tag">REST API</span>
-              <span class="proj-tag">PostgreSQL</span>
-              <span class="proj-tag">Render</span>
+            <div class="proj-card-back">
+              <div class="back-icon">&#x1F4CA;</div>
+              <div class="back-title">Customer Data Transformer</div>
+              <div class="back-desc">
+                Deployed on Render &middot; REST API backend &middot; PostgreSQL
+                persistence &middot; Resume parsing &middot; Clean data pipeline UI.
+              </div>
+              <div class="back-tags">
+                <span class="back-tag">Python</span><span class="back-tag">REST API</span>
+                <span class="back-tag">PostgreSQL</span><span class="back-tag">Render</span>
+              </div>
+              <a href="https://customer-data-transformer.onrender.com/"
+                 target="_blank" rel="noopener noreferrer" class="back-link">&#8599; View Live</a>
+              <div class="back-flip-hint">&#8635; hover to flip back</div>
             </div>
           </div>
-        </a>
+        </div>
 
-        <!-- ClinicalOps India -->
-        <a
-          href="https://clinicalopstrail-india.streamlit.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="proj-card reveal delay-3"
-        >
-          <div class="proj-img-wrap">
-            <div
-              class="proj-thumb"
-              style="background: linear-gradient(135deg, #12061a, #1a0a2e);"
-            >&#x1F9EC;</div>
-            <div class="proj-img-overlay"></div>
-            <span class="badge-live">LIVE</span>
-          </div>
-          <div class="proj-body">
-            <div class="proj-top">
-              <span class="proj-icon">&#x1F3E5;</span>
-              <span class="proj-arrow">&#8599;</span>
+        <!-- ─ Card 4: ClinicalOps India ─ -->
+        <div class="proj-card-3d reveal delay-3">
+          <div class="proj-card-inner">
+            <div class="proj-card-front proj-card">
+              <div class="proj-img-wrap">
+                <div class="proj-thumb" style="background:linear-gradient(135deg,#12061a,#1a0a2e);">&#x1F9EC;</div>
+                <div class="proj-img-overlay"></div>
+                <span class="badge-live">LIVE</span>
+              </div>
+              <div class="proj-body">
+                <div class="proj-top">
+                  <span class="proj-icon">&#x1F3E5;</span>
+                  <span class="proj-arrow">&#8599;</span>
+                </div>
+                <h3 class="proj-name">ClinicalOps India</h3>
+                <p class="proj-desc">
+                  Multi-site clinical trial command center &mdash; recruitment,
+                  enrollment funnels, site leaderboards &amp; ML predictive analytics.
+                </p>
+                <div class="proj-tags">
+                  <span class="proj-tag">Python</span>
+                  <span class="proj-tag">Streamlit</span>
+                  <span class="proj-tag">Scikit-learn</span>
+                  <span class="proj-tag">Plotly</span>
+                </div>
+              </div>
+              <div class="front-flip-hint">&#8635; hover to flip</div>
             </div>
-            <h3 class="proj-name">ClinicalOps India</h3>
-            <p class="proj-desc">
-              Multi-site clinical trial command center tracking patient recruitment,
-              enrollment funnels, site leaderboards, and adherence risk across 5 Indian
-              hospitals &mdash; with an ML model studio for predictive analytics.
-            </p>
-            <div class="proj-tags">
-              <span class="proj-tag">Python</span>
-              <span class="proj-tag">Streamlit</span>
-              <span class="proj-tag">Pandas</span>
-              <span class="proj-tag">Scikit-learn</span>
-              <span class="proj-tag">Plotly</span>
-              <span class="proj-tag">NumPy</span>
+            <div class="proj-card-back">
+              <div class="back-icon">&#x1F9EC;</div>
+              <div class="back-title">ClinicalOps India</div>
+              <div class="back-desc">
+                5 Indian hospital sites &middot; Enrollment funnel analytics &middot;
+                Adherence risk scoring &middot; ML model studio &middot; Plotly dashboards.
+              </div>
+              <div class="back-tags">
+                <span class="back-tag">Python</span><span class="back-tag">Streamlit</span>
+                <span class="back-tag">Pandas</span><span class="back-tag">Scikit-learn</span>
+                <span class="back-tag">Plotly</span><span class="back-tag">NumPy</span>
+              </div>
+              <a href="https://clinicalopstrail-india.streamlit.app/"
+                 target="_blank" rel="noopener noreferrer" class="back-link">&#8599; View Live</a>
+              <div class="back-flip-hint">&#8635; hover to flip back</div>
             </div>
           </div>
-        </a>
+        </div>
 
       </div>
     </div>
   </section>
 
   <!-- =============================================
-       STATS (GitHub + LeetCode)
+       03. STATS
   ============================================= -->
   <section id="stats" class="sec sec-alt">
     <div class="container">
-
-      <div class="sec-head reveal">
-        <p class="sec-num">04. ACTIVITY</p>
+      <div class="sec-head reveal up">
+        <p class="sec-num">03. ACTIVITY</p>
         <h2 class="sec-title">My Stats</h2>
         <div class="sec-line"></div>
       </div>
 
       <div class="stats-grid">
 
-        <!-- GitHub — live -->
-        <div class="gh-card reveal-left" data-tilt>
+        <!-- GitHub -->
+        <div class="gh-card reveal-left">
+          <div class="tilt-shine"></div>
           <div class="stats-header">
             <span class="s-icon">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
             </span>
             <h3>GitHub</h3>
-            <a
-              href="https://github.com/Priyanshav"
-              target="_blank"
-              rel="noopener noreferrer"
-            >@Priyanshav &#8599;</a>
+            <a href="https://github.com/Priyanshav" target="_blank" rel="noopener noreferrer">@Priyanshav &#8599;</a>
           </div>
           <div class="gh-body">
-
             <div class="gh-metrics">
-              <div class="gh-metric">
-                <span class="gh-num" id="gh-repos">&mdash;</span>
-                <span class="gh-lbl">Repos</span>
-              </div>
-              <div class="gh-metric">
-                <span class="gh-num" id="gh-stars">&mdash;</span>
-                <span class="gh-lbl">Stars</span>
-              </div>
-              <div class="gh-metric">
-                <span class="gh-num" id="gh-followers">&mdash;</span>
-                <span class="gh-lbl">Followers</span>
-              </div>
-              <div class="gh-metric">
-                <span class="gh-num" id="gh-following">&mdash;</span>
-                <span class="gh-lbl">Following</span>
-              </div>
+              <div class="gh-metric"><span class="gh-num" id="gh-repos">&mdash;</span><span class="gh-lbl">Repos</span></div>
+              <div class="gh-metric"><span class="gh-num" id="gh-stars">&mdash;</span><span class="gh-lbl">Stars</span></div>
+              <div class="gh-metric"><span class="gh-num" id="gh-followers">&mdash;</span><span class="gh-lbl">Followers</span></div>
+              <div class="gh-metric"><span class="gh-num" id="gh-following">&mdash;</span><span class="gh-lbl">Following</span></div>
             </div>
-
             <div class="gh-langs">
               <div class="gh-sub-head"><span>Top Languages</span></div>
               <div class="gh-lang-bar" id="gh-lang-bar"></div>
               <div class="gh-lang-legend" id="gh-lang-legend"></div>
             </div>
-
             <div class="gh-contrib">
-              <div class="gh-sub-head">
-                <span>Recent Activity</span>
-                <span id="gh-contrib-total"></span>
-              </div>
+              <div class="gh-sub-head"><span>Recent Activity</span><span id="gh-contrib-total"></span></div>
               <div class="gh-heatmap" id="gh-heatmap"></div>
               <div class="gh-legend-scale">
                 Less
@@ -554,167 +531,181 @@
                 More
               </div>
             </div>
-
             <div class="gh-status" id="gh-status">Loading live stats&hellip;</div>
           </div>
         </div>
 
-        <!-- Right column: LeetCode + TakeUForward stacked -->
+        <!-- Right column: LeetCode + TakeUForward -->
         <div class="stats-col">
 
-        <!-- LeetCode — native -->
-        <div class="gh-card reveal-right" data-tilt>
-          <div class="stats-header">
-            <span class="s-icon">&#x1F9E9;</span>
-            <h3>LeetCode</h3>
-            <a
-              href="https://leetcode.com/u/Priyanshav/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >@Priyanshav &#8599;</a>
-          </div>
-          <div class="leet-native">
-            <div class="leet-ring">
-              <svg viewBox="0 0 160 160">
-                <defs>
-                  <linearGradient id="leetGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#00f5ff" />
-                    <stop offset="100%" stop-color="#a855f7" />
-                  </linearGradient>
-                </defs>
-                <circle class="ring-bg" cx="80" cy="80" r="70" />
-                <circle class="ring-fg" id="leetRing" cx="80" cy="80" r="70" />
-              </svg>
-              <div class="leet-ring-center">
-                <span class="big">175+</span>
-                <span class="small">SOLVED</span>
-              </div>
+          <div class="gh-card reveal-right">
+            <div class="tilt-shine"></div>
+            <div class="stats-header">
+              <span class="s-icon">&#x1F9E9;</span>
+              <h3>LeetCode</h3>
+              <a href="https://leetcode.com/u/Priyanshav/" target="_blank" rel="noopener noreferrer">@Priyanshav &#8599;</a>
             </div>
-            <a
-              href="https://leetcode.com/u/Priyanshav/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="cert-btn cert-btn--ghost"
-              style="flex:initial; padding:9px 22px;"
-            >View Profile &#8599;</a>
-          </div>
-        </div>
-
-        <!-- TakeUforward — live -->
-        <div class="gh-card tuf-card reveal-right" data-tilt>
-          <div class="stats-header">
-            <span class="s-icon">&#x1F680;</span>
-            <h3>TakeUForward</h3>
-            <a
-              href="https://takeuforward.org/profile/Priyanshav"
-              target="_blank"
-              rel="noopener noreferrer"
-            >@Priyanshav &#8599;</a>
-          </div>
-          <div class="tuf-body">
-            <div class="tuf-top">
-              <div class="tuf-total">
-                <span class="tuf-total-num" id="tuf-total">233</span>
-                <span class="tuf-total-lbl">DSA SOLVED</span>
-              </div>
-              <div class="tuf-breakdown">
-                <div class="tuf-row">
-                  <span class="tuf-diff easy">Easy</span>
-                  <div class="tuf-bar easy"><i id="tuf-easy-bar"></i></div>
-                  <span class="tuf-count" id="tuf-easy"><b>144</b> <span class="den">/ 374</span></span>
-                </div>
-                <div class="tuf-row">
-                  <span class="tuf-diff medium">Medium</span>
-                  <div class="tuf-bar medium"><i id="tuf-medium-bar"></i></div>
-                  <span class="tuf-count" id="tuf-medium"><b>56</b> <span class="den">/ 477</span></span>
-                </div>
-                <div class="tuf-row">
-                  <span class="tuf-diff hard">Hard</span>
-                  <div class="tuf-bar hard"><i id="tuf-hard-bar"></i></div>
-                  <span class="tuf-count" id="tuf-hard"><b>33</b> <span class="den">/ 253</span></span>
+            <div class="leet-native">
+              <div class="leet-ring">
+                <svg viewBox="0 0 160 160">
+                  <defs>
+                    <linearGradient id="leetGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#00f5ff" />
+                      <stop offset="100%" stop-color="#a855f7" />
+                    </linearGradient>
+                  </defs>
+                  <circle class="ring-bg" cx="80" cy="80" r="70" />
+                  <circle class="ring-fg" id="leetRing" cx="80" cy="80" r="70" />
+                </svg>
+                <div class="leet-ring-center">
+                  <span class="big">175+</span>
+                  <span class="small">SOLVED</span>
                 </div>
               </div>
+              <a href="https://leetcode.com/u/Priyanshav/" target="_blank" rel="noopener noreferrer"
+                 class="cert-btn cert-btn--ghost" style="flex:initial;padding:9px 22px;">View Profile &#8599;</a>
             </div>
-            <div class="gh-status" id="tuf-status">Loading live stats&hellip;</div>
           </div>
-        </div>
+
+          <div class="gh-card tuf-card reveal-right">
+            <div class="tilt-shine"></div>
+            <div class="stats-header">
+              <span class="s-icon">&#x1F680;</span>
+              <h3>TakeUForward</h3>
+              <a href="https://takeuforward.org/profile/Priyanshav" target="_blank" rel="noopener noreferrer">@Priyanshav &#8599;</a>
+            </div>
+            <div class="tuf-body">
+              <div class="tuf-top">
+                <div class="tuf-total">
+                  <span class="tuf-total-num" id="tuf-total">233</span>
+                  <span class="tuf-total-lbl">DSA SOLVED</span>
+                </div>
+                <div class="tuf-breakdown">
+                  <div class="tuf-row">
+                    <span class="tuf-diff easy">Easy</span>
+                    <div class="tuf-bar easy"><i id="tuf-easy-bar"></i></div>
+                    <span class="tuf-count" id="tuf-easy"><b>144</b> <span class="den">/ 374</span></span>
+                  </div>
+                  <div class="tuf-row">
+                    <span class="tuf-diff medium">Medium</span>
+                    <div class="tuf-bar medium"><i id="tuf-medium-bar"></i></div>
+                    <span class="tuf-count" id="tuf-medium"><b>56</b> <span class="den">/ 477</span></span>
+                  </div>
+                  <div class="tuf-row">
+                    <span class="tuf-diff hard">Hard</span>
+                    <div class="tuf-bar hard"><i id="tuf-hard-bar"></i></div>
+                    <span class="tuf-count" id="tuf-hard"><b>33</b> <span class="den">/ 253</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="gh-status" id="tuf-status">Loading live stats&hellip;</div>
+            </div>
+          </div>
 
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- =============================================
-       CERTIFICATIONS
+       04. CERTIFICATIONS  — 3D flip cards
   ============================================= -->
   <section id="certs" class="sec">
     <div class="container">
-
-      <div class="sec-head reveal">
-        <p class="sec-num">05. CERTIFICATIONS</p>
+      <div class="sec-head reveal up">
+        <p class="sec-num">04. CERTIFICATIONS</p>
         <h2 class="sec-title">Credentials</h2>
         <div class="sec-line"></div>
       </div>
 
       <div class="certs-grid">
 
-        <!-- Cert 1: NCET Certificate -->
-        <div class="cert-card reveal" data-tilt>
-          <div class="cert-banner cert-banner--ncert">
-            <span class="cert-verify">Verified</span>
-            <div class="cert-seal">&#x1F4F7;</div>
-            <div class="cert-brand">NCET</div>
-            <span class="cert-shine"></span>
-          </div>
-          <div class="cert-info">
-            <span class="cert-tag">Certification</span>
-            <h3 class="cert-name">Data Scientist</h3>
-            <p class="cert-issuer">NCET</p>
-            <p class="cert-date">Issued Aug 02, 2026</p>
-            <div class="cert-actions">
-              <a href="assets/NCET_Certificate.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-              <a href="assets/NCET_Certificate.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+        <!-- Cert 1: NCET -->
+        <div class="cert-card-3d reveal">
+          <div class="cert-card-inner">
+            <div class="cert-face cert-face-front cert-card">
+              <div class="cert-banner cert-banner--ncert">
+                <span class="cert-verify">Verified</span>
+                <div class="cert-seal">&#x1F4F7;</div>
+                <div class="cert-brand">NCET</div>
+                <span class="cert-shine"></span>
+              </div>
+              <div class="cert-info">
+                <span class="cert-tag">Certification</span>
+                <h3 class="cert-name">Data Scientist</h3>
+                <p class="cert-issuer">NCET</p>
+                <p class="cert-date">Issued Aug 02, 2026</p>
+              </div>
+            </div>
+            <div class="cert-face cert-face-back">
+              <div class="cb-seal">&#x1F4F7;</div>
+              <div class="cb-title">Data Scientist</div>
+              <div class="cb-issuer">NCET</div>
+              <div class="cb-date">Issued Aug 02, 2026</div>
+              <div class="cb-actions">
+                <a href="assets/NCET_Certificate.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
+                <a href="assets/NCET_Certificate.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Cert 2: Getting Started in Cybersecurity 3.0 -->
-        <div class="cert-card reveal delay-1" data-tilt>
-          <div class="cert-banner cert-banner--cyber">
-            <span class="cert-verify">Verified</span>
-            <div class="cert-seal">&#x1F6E1;&#xFE0F;</div>
-            <div class="cert-brand">Fortinet</div>
-            <span class="cert-shine"></span>
-          </div>
-          <div class="cert-info">
-            <span class="cert-tag">Certification</span>
-            <h3 class="cert-name">Getting Started in Cybersecurity 3.0</h3>
-            <p class="cert-issuer">Fortinet Training Institute</p>
-            <p class="cert-date">Issued Mar 28, 2026 &middot; Signed by COO</p>
-            <div class="cert-actions">
-              <a href="assets/cert-cybersecurity.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-              <a href="assets/cert-cybersecurity.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+        <!-- Cert 2: Cybersecurity 3.0 -->
+        <div class="cert-card-3d reveal delay-1">
+          <div class="cert-card-inner">
+            <div class="cert-face cert-face-front cert-card">
+              <div class="cert-banner cert-banner--cyber">
+                <span class="cert-verify">Verified</span>
+                <div class="cert-seal">&#x1F6E1;&#xFE0F;</div>
+                <div class="cert-brand">Fortinet</div>
+                <span class="cert-shine"></span>
+              </div>
+              <div class="cert-info">
+                <span class="cert-tag">Certification</span>
+                <h3 class="cert-name">Getting Started in Cybersecurity 3.0</h3>
+                <p class="cert-issuer">Fortinet Training Institute</p>
+                <p class="cert-date">Issued Mar 28, 2026</p>
+              </div>
+            </div>
+            <div class="cert-face cert-face-back">
+              <div class="cb-seal">&#x1F6E1;&#xFE0F;</div>
+              <div class="cb-title">Getting Started in Cybersecurity 3.0</div>
+              <div class="cb-issuer">Fortinet Training Institute</div>
+              <div class="cb-date">Issued Mar 28, 2026 &middot; Signed by COO</div>
+              <div class="cb-actions">
+                <a href="assets/cert-cybersecurity.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
+                <a href="assets/cert-cybersecurity.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Cert 3: Introduction to the Threat Landscape 3.0 -->
-        <div class="cert-card reveal delay-2" data-tilt>
-          <div class="cert-banner cert-banner--threat">
-            <span class="cert-verify">Verified</span>
-            <div class="cert-seal">&#x1F310;</div>
-            <div class="cert-brand">Fortinet</div>
-            <span class="cert-shine"></span>
-          </div>
-          <div class="cert-info">
-            <span class="cert-tag">Certification</span>
-            <h3 class="cert-name">Introduction to the Threat Landscape 3.0</h3>
-            <p class="cert-issuer">Fortinet Training Institute</p>
-            <p class="cert-date">Issued Mar 14, 2026 &middot; Signed by COO</p>
-            <div class="cert-actions">
-              <a href="assets/cert-threat-landscape.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-              <a href="assets/cert-threat-landscape.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+        <!-- Cert 3: Threat Landscape 3.0 -->
+        <div class="cert-card-3d reveal delay-2">
+          <div class="cert-card-inner">
+            <div class="cert-face cert-face-front cert-card">
+              <div class="cert-banner cert-banner--threat">
+                <span class="cert-verify">Verified</span>
+                <div class="cert-seal">&#x1F310;</div>
+                <div class="cert-brand">Fortinet</div>
+                <span class="cert-shine"></span>
+              </div>
+              <div class="cert-info">
+                <span class="cert-tag">Certification</span>
+                <h3 class="cert-name">Introduction to the Threat Landscape 3.0</h3>
+                <p class="cert-issuer">Fortinet Training Institute</p>
+                <p class="cert-date">Issued Mar 14, 2026</p>
+              </div>
+            </div>
+            <div class="cert-face cert-face-back">
+              <div class="cb-seal">&#x1F310;</div>
+              <div class="cb-title">Introduction to the Threat Landscape 3.0</div>
+              <div class="cb-issuer">Fortinet Training Institute</div>
+              <div class="cb-date">Issued Mar 14, 2026 &middot; Signed by COO</div>
+              <div class="cb-actions">
+                <a href="assets/cert-threat-landscape.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
+                <a href="assets/cert-threat-landscape.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              </div>
             </div>
           </div>
         </div>
@@ -724,73 +715,44 @@
   </section>
 
   <!-- =============================================
-       CONTACT
+       05. CONTACT
   ============================================= -->
   <section id="contact" class="sec sec-alt">
     <div class="container">
       <div class="contact-inner">
 
-        <div class="sec-head reveal" style="text-align: center;">
-          <p class="sec-num" style="text-align: center;">06. CONTACT</p>
+        <div class="sec-head reveal up" style="text-align:center;">
+          <p class="sec-num" style="text-align:center;">05. CONTACT</p>
           <h2 class="sec-title">Get In Touch</h2>
-          <div class="sec-line" style="margin: 10px auto 0;"></div>
+          <div class="sec-line" style="margin:10px auto 0;"></div>
         </div>
 
         <p class="contact-sub reveal">
-          Open to internships, collaborations, CTF teams, and interesting projects.
+          Open for full time role in remote or on-site mode.
           Whether it&rsquo;s security research or shipping a product &mdash; let&rsquo;s talk.
         </p>
 
         <div class="contact-cards reveal">
           <a href="mailto:priyanshavkmr6@gmail.com" class="contact-card">
             <span class="c-icon">&#x2709;&#xFE0F;</span>
-            <div>
-              <div class="c-label">EMAIL</div>
-              <div class="c-value">priyanshavkmr6@gmail.com</div>
-            </div>
+            <div><div class="c-label">EMAIL</div><div class="c-value">priyanshavkmr6@gmail.com</div></div>
           </a>
-
           <a href="tel:+917979923120" class="contact-card">
             <span class="c-icon">&#x1F4DE;</span>
-            <div>
-              <div class="c-label">PHONE</div>
-              <div class="c-value">+91 79799 23120</div>
-            </div>
+            <div><div class="c-label">PHONE</div><div class="c-value">+91 79799 23120</div></div>
           </a>
-
-          <a
-            href="https://linkedin.com/in/priyanshu-niet"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-card"
-          >
+          <a href="https://linkedin.com/in/priyanshu-niet" target="_blank" rel="noopener noreferrer" class="contact-card">
             <span class="c-icon">&#x1F4BC;</span>
-            <div>
-              <div class="c-label">LINKEDIN</div>
-              <div class="c-value">linkedin.com/in/priyanshu-niet</div>
-            </div>
+            <div><div class="c-label">LINKEDIN</div><div class="c-value">linkedin.com/in/priyanshu-niet</div></div>
           </a>
-
-          <a
-            href="https://github.com/Priyanshav"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-card"
-          >
+          <a href="https://github.com/Priyanshav" target="_blank" rel="noopener noreferrer" class="contact-card">
             <span class="c-icon">&#x2328;&#xFE0F;</span>
-            <div>
-              <div class="c-label">GITHUB</div>
-              <div class="c-value">github.com/Priyanshav</div>
-            </div>
+            <div><div class="c-label">GITHUB</div><div class="c-value">github.com/Priyanshav</div></div>
           </a>
         </div>
 
         <div class="reveal">
-          <a
-            href="assets/Priyanshu_Kumar_Resume.pdf"
-            download
-            class="resume-dl"
-          >
+          <a href="assets/Priyanshu_Kumar_Resume.pdf" download class="resume-dl">
             &#8595;&nbsp;&nbsp;DOWNLOAD RESUME
           </a>
         </div>
@@ -804,13 +766,15 @@
   ============================================= -->
   <footer>
     Built by <span>Priyanshu Kumar</span>
-    &nbsp;&middot;&nbsp;
-    Dev &amp; Security
-    &nbsp;&middot;&nbsp;
-    <span>&lt;/&gt;</span> with &#x1F512; &amp; &#x2615;
+    &nbsp;&middot;&nbsp; Dev &amp; Security
+    &nbsp;&middot;&nbsp; <span>&lt;/&gt;</span> with &#x1F512; &amp; &#x2615;
   </footer>
 
-  <!-- Scripts -->
+  <!-- =============================================
+       SCRIPTS — all logic in separate .js files
+  ============================================= -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
   <script src="js/particles.js"></script>
   <script src="js/typing.js"></script>
   <script src="js/main.js"></script>
@@ -819,6 +783,11 @@
   <script src="js/cyber.js"></script>
   <script src="js/tuf.js"></script>
   <script src="js/cursor.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/premium.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/three-cards.js"></script>
+  <script src="js/cyber-bg.js"></script>
 
 </body>
 </html>

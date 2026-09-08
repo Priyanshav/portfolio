@@ -1,0 +1,221 @@
+/* ============================================================
+   SPACING FIX  —  eliminates phantom section gaps
+   Load this LAST (after all other CSS)
+   ============================================================ */
+
+/* 1. Core section rhythm — no min-height that creates blank space */
+.sec {
+  padding-top:    64px !important;
+  padding-bottom: 64px !important;
+  position: relative !important;
+}
+
+/* 2. Hero keeps full viewport height */
+#hero {
+  min-height: 100vh !important;
+  overflow: visible !important; /* must stay visible — orbit icons go outside */
+}
+
+/* 3. Only clip contact (has the bleeding rings) — others stay visible
+      so IntersectionObserver can trigger .reveal on sec-heads */
+#contact { overflow: hidden !important; }
+
+/* Force section headings ALWAYS visible — never stuck at opacity:0 */
+.sec-head,
+.sec-head .sec-num,
+.sec-head .sec-title,
+.sec-head .sec-line {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  visibility: visible !important;
+}
+
+/* 4. Decorative orb in stats — keep it in-bounds */
+#stats::before {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  top: 0 !important; left: 0 !important;
+  transform: none !important;
+  background: radial-gradient(ellipse 70% 70% at 50% 50%,
+    rgba(0,255,65,0.04) 0%, transparent 70%) !important;
+}
+
+/* 5. Contact rings — kill the ones that bleed upward */
+#contact .contact-inner::before,
+#contact .contact-inner::after { display: none !important; }
+
+#contact::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%,  rgba(0,255,65,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(255,140,0,0.04) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+#contact .contact-inner { position: relative; z-index: 1; }
+
+/* 6. Flip-card explicit heights — prevents row collapse */
+.proj-card-3d  { height: 460px !important; overflow: visible !important; }
+.proj-card-3d.proj-featured { height: 500px !important; }
+.proj-card-inner { height: 100% !important; }
+.cert-card-3d  { height: 320px !important; overflow: visible !important; }
+.cert-card-inner { height: 100% !important; }
+
+/* 7. Grid rows — don't stretch to fill phantom height */
+.projects-grid { align-items: start !important; }
+.certs-grid    { align-items: start !important; }
+
+/* 8. Orbit img icons — bare floating logos, no card bg */
+.orbit-icon--img {
+  width: 28px !important;
+  height: 28px !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+.orbit-icon--img img {
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain !important;
+  display: block !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  /* full colour, bright, clear drop shadow for visibility */
+  filter: saturate(1.3) brightness(1.15)
+          drop-shadow(0 0 5px rgba(0,0,0,0.8)) !important;
+}
+.orbit-icon--img:hover img {
+  filter: saturate(1.5) brightness(1.3)
+          drop-shadow(0 0 8px rgba(0,255,65,0.6)) !important;
+  transform: scale(1.15);
+}
+
+/* 9. Avatar orbit container — give it room for the icons */
+.avatar-orbit {
+  position: absolute !important;
+  inset: -60px !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+  overflow: visible !important;
+}
+
+/* 10. Marquee fixed height */
+.marquee {
+  height: 46px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* 11. Grid background — fixed so it never adds layout height */
+.grid-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  transform: none !important;
+}
+
+/* 12. Skills sphere wrap */
+.skills-sphere-wrap {
+  height: 300px !important;
+  min-height: 300px !important;
+  overflow: hidden !important;
+}
+
+/* 13. Mobile adjustments */
+@media (max-width: 768px) {
+  .proj-card-3d { height: auto !important; min-height: 380px !important; }
+  .cert-card-3d { height: auto !important; min-height: 270px !important; }
+  .skills-sphere-wrap {
+    height: 360px !important;
+    min-height: 360px !important;
+    overflow: visible !important;  /* stop SQL tag clipping at bottom */
+  }
+  #skills-sphere { width: 280px !important; height: 280px !important; }
+}
+
+/* Remove the duplicate cyan underline on sec-num (from premium.css ::after)
+   Keep only the explicit .sec-line div which is already styled green */
+.sec-num::after,
+.sec-head .sec-num::after,
+.sec-head.up .sec-num::after {
+  display: none !important;
+  width: 0 !important;
+  background: none !important;
+  opacity: 0 !important;
+}
+
+/* === FIX: sec-num layout + color (premium.css used inline-block + webkit gradient) ===
+   Must override -webkit-text-fill-color which beats regular color property */
+.sec-num,
+p.sec-num,
+.sec-head .sec-num,
+.sec-head.up .sec-num {
+  display: block !important;           /* stack vertically above title */
+  background: none !important;         /* kill cyan-purple gradient */
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #00ff41 !important; /* THIS is what overrides the teal */
+  color: #00ff41 !important;
+}
+
+/* === MOBILE FIX: project + cert cards invisible ===
+   height:auto on parent causes position:absolute faces to collapse to 0.
+   Must use explicit px heights so inner height:100% resolves correctly. */
+@media (max-width: 768px) {
+  /* Project cards */
+  .proj-card-3d {
+    height: 440px !important;
+    min-height: unset !important;
+  }
+  .proj-card-inner {
+    height: 440px !important;
+  }
+
+  /* Cert cards */
+  .cert-card-3d {
+    height: 300px !important;
+    min-height: unset !important;
+  }
+  .cert-card-inner {
+    height: 300px !important;
+  }
+
+  /* Make sure grids are single column and visible */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  .certs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Disable hover-flip on mobile ONLY when not already flipped.
+     :hover fires on tap in mobile browsers, so without :not(.flipped)
+     the none!important was overriding the rotateY of the flipped state. */
+  .proj-card-3d:not(.flipped):hover .proj-card-inner {
+    transform: none !important;
+  }
+  .cert-card-3d:not(.flipped):hover .cert-card-inner {
+    transform: none !important;
+  }
+  /* Guarantee flipped state always wins on mobile */
+  .proj-card-3d.flipped .proj-card-inner {
+    transform: rotateY(180deg) !important;
+  }
+  .cert-card-3d.flipped .cert-card-inner {
+    transform: rotateY(180deg) !important;
+  }
+}

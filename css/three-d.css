@@ -1,0 +1,635 @@
+/* =========================================
+   PRIYANSHU KUMAR — PORTFOLIO
+   3D Layer — v2 (fixed spacing + new animations)
+   ========================================= */
+
+/* ─────────────────────────────────────────
+   1. THREE.JS HERO CANVAS
+───────────────────────────────────────── */
+#three-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+#hero {
+  position: relative;
+  overflow: hidden;
+}
+
+#hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─────────────────────────────────────────
+   2. PROJECTS GRID — 2 columns
+───────────────────────────────────────── */
+.projects-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 24px !important;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   3. 3D FLIP CARD — PROJECT CARDS
+   CRITICAL: Fixed height on outer wrapper so
+   position:absolute faces don't collapse parent
+───────────────────────────────────────── */
+.proj-card-3d {
+  perspective: 1000px;
+  cursor: pointer;
+  height: 480px;          /* explicit height — prevents section gaps */
+}
+
+.proj-card-3d.proj-featured {
+  height: 520px;
+}
+
+.proj-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;            /* fill the explicit parent height */
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 16px;
+}
+
+.proj-card-3d:hover .proj-card-inner,
+.proj-card-3d.flipped .proj-card-inner {
+  transform: rotateY(180deg);
+}
+
+.proj-card-front,
+.proj-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Front face */
+.proj-card-front {
+  background: rgba(10, 14, 26, 0.85);
+  border: 1px solid rgba(0, 245, 255, 0.12);
+  transform: rotateY(0deg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Restore proj-arrow visibility inside flip card */
+.proj-card-front .proj-arrow {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.proj-card-3d:hover .proj-card-front .proj-arrow {
+  opacity: 1;
+  transform: translate(4px, -4px);
+}
+
+/* Back face */
+.proj-card-back {
+  background: linear-gradient(135deg, #020c1a 0%, #0d0a1e 50%, #050810 100%);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 28px;
+  gap: 16px;
+  text-align: center;
+}
+
+.proj-card-back::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.back-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.6));
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%       { transform: translateY(-10px) rotate(3deg); }
+}
+
+.back-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 1px;
+}
+
+.back-desc {
+  font-size: 0.8rem;
+  color: rgba(226, 232, 240, 0.65);
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+.back-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.back-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: rgba(168, 85, 247, 0.9);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.15), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(0, 245, 255, 0.4);
+  color: #00f5ff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.back-link:hover {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.25), rgba(168, 85, 247, 0.25));
+  box-shadow: 0 0 24px rgba(0, 245, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.back-link-disabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 8px;
+  background: rgba(30, 30, 50, 0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(226,232,240,0.35);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: not-allowed;
+}
+
+.back-flip-hint,
+.front-flip-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(0, 245, 255, 0.45);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  animation: hintPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+/* ─────────────────────────────────────────
+   4. 3D TILT CARD (shine overlay)
+───────────────────────────────────────── */
+.tilt-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 120px 120px at var(--tx, 50%) var(--ty, 50%),
+    rgba(255, 255, 255, 0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* ─────────────────────────────────────────
+   5. 3D TEXT — section titles
+───────────────────────────────────────── */
+.text-3d {
+  display: inline-block;
+  text-shadow:
+    1px 1px 0  rgba(0, 245, 255, 0.5),
+    2px 2px 0  rgba(0, 245, 255, 0.4),
+    3px 3px 0  rgba(0, 245, 255, 0.3),
+    4px 4px 0  rgba(0, 245, 255, 0.2),
+    5px 5px 8px rgba(0, 0, 0, 0.5);
+  transition: text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.text-3d:hover {
+  text-shadow:
+    2px 2px 0  rgba(0, 245, 255, 0.6),
+    4px 4px 0  rgba(0, 245, 255, 0.45),
+    6px 6px 0  rgba(0, 245, 255, 0.3),
+    8px 8px 16px rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ─────────────────────────────────────────
+   6. 3D SKILLS SPHERE
+───────────────────────────────────────── */
+.skills-sphere-wrap {
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+#skills-sphere {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  transform-style: preserve-3d;
+  cursor: grab;
+}
+
+#skills-sphere:active { cursor: grabbing; }
+
+.sphere-tag {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  transform-style: preserve-3d;
+  cursor: default;
+  transition: background 0.3s, color 0.3s;
+}
+
+.sphere-tag.side-front {
+  background: rgba(0, 245, 255, 0.15);
+  border: 1px solid rgba(0, 245, 255, 0.45);
+  color: rgba(0, 245, 255, 0.95);
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+.sphere-tag.side-mid {
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: rgba(168, 85, 247, 0.9);
+}
+.sphere-tag.side-back {
+  background: rgba(30, 30, 60, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(226, 232, 240, 0.2);
+}
+
+/* ─────────────────────────────────────────
+   7. 3D CERT CARD FLIP
+   Fixed height to avoid collapse
+───────────────────────────────────────── */
+.cert-card-3d {
+  perspective: 1000px;
+  cursor: pointer;
+  height: 340px;
+}
+
+.cert-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 16px;
+}
+
+.cert-card-3d:hover .cert-card-inner,
+.cert-card-3d.flipped .cert-card-inner {
+  transform: rotateY(180deg);
+}
+
+.cert-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.cert-face-front  { transform: rotateY(0deg); }
+
+.cert-face-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #020c1a, #0d0a1e);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 24px;
+  gap: 12px;
+  text-align: center;
+}
+
+.cert-face-back .cb-seal  { font-size: 2.8rem; animation: floatIcon 3s ease-in-out infinite; }
+.cert-face-back .cb-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+.cert-face-back .cb-issuer { font-size: 0.72rem; color: rgba(0, 245, 255, 0.7); font-family: 'JetBrains Mono', monospace; }
+.cert-face-back .cb-date   { font-size: 0.68rem; color: rgba(226, 232, 240, 0.4); }
+.cert-face-back .cb-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+
+/* ─────────────────────────────────────────
+   8. HERO STATS 3D
+───────────────────────────────────────── */
+.h-stat {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.h-stat:hover {
+  transform: perspective(400px) translateZ(20px) scale(1.08);
+}
+
+/* ─────────────────────────────────────────
+   9. STATS SECTION — 3D metric cards
+───────────────────────────────────────── */
+
+/* gh-metric tiles pop forward */
+.gh-metric {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  border-radius: 10px;
+}
+.gh-metric:hover {
+  transform: perspective(400px) translateZ(16px) scale(1.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 16px rgba(0, 245, 255, 0.15);
+}
+
+/* LeetCode ring 3D tilt container */
+.leet-ring {
+  transition: transform 0.4s ease;
+}
+.gh-card:hover .leet-ring {
+  transform: perspective(500px) rotateY(-8deg) rotateX(4deg);
+}
+
+/* TUF total number pop */
+.tuf-total-num {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.gh-card:hover .tuf-total-num {
+  transform: perspective(300px) translateZ(20px) scale(1.1);
+}
+
+/* Floating glow orb behind stats section */
+#stats {
+  position: relative;
+}
+
+#stats::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.05) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: statOrb 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes statOrb {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);   opacity: 0.6; }
+  50%       { transform: translate(-50%, -50%) scale(1.2); opacity: 1;   }
+}
+
+.stats-grid { position: relative; z-index: 1; }
+
+/* ─────────────────────────────────────────
+   10. CONTACT SECTION — full 3D treatment
+───────────────────────────────────────── */
+
+/* Perspective wrapper on the contact section */
+#contact {
+  position: relative;
+}
+
+/* 3D rotating ring behind the contact heading */
+#contact .contact-inner {
+  position: relative;
+}
+
+#contact .contact-inner::before {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: -60px;
+  left: 50%;
+  margin-left: -160px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.08);
+  animation: contactRingA 12s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#contact .contact-inner::after {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: -10px;
+  left: 50%;
+  margin-left: -110px;
+  border-radius: 50%;
+  border: 1px solid rgba(168, 85, 247, 0.1);
+  animation: contactRingA 8s linear infinite reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes contactRingA {
+  from { transform: rotate(0deg) rotateX(60deg); }
+  to   { transform: rotate(360deg) rotateX(60deg); }
+}
+
+/* Contact cards 3D */
+.contact-card {
+  position: relative;
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,245,255,0.05), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.contact-card:hover {
+  transform: perspective(600px) translateZ(20px) translateY(-8px) rotateX(4deg);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(0, 245, 255, 0.12),
+    inset 0 1px 0 rgba(0, 245, 255, 0.2);
+  border-color: rgba(0, 245, 255, 0.35) !important;
+}
+
+.contact-card:hover::before { opacity: 1; }
+
+/* Icon lift on contact card hover */
+.c-icon {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+}
+
+.contact-card:hover .c-icon {
+  transform: perspective(300px) translateZ(12px) scale(1.2);
+  filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.5));
+}
+
+/* Contact section — 3D depth beam that sweeps */
+.contact-cards {
+  position: relative;
+}
+
+.contact-cards::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.04), transparent);
+  animation: contactBeam 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes contactBeam {
+  0%   { left: -10%; }
+  100% { left: 110%; }
+}
+
+/* Resume button 3D pop */
+.resume-dl {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.resume-dl:hover {
+  transform: perspective(400px) translateZ(16px) translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 245, 255, 0.2);
+}
+
+/* ─────────────────────────────────────────
+   11. MARQUEE items
+───────────────────────────────────────── */
+.marquee-item {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.marquee-item:hover {
+  transform: perspective(200px) translateZ(10px) scale(1.06);
+  color: #00f5ff;
+  text-shadow: 0 0 16px rgba(0, 245, 255, 0.5);
+}
+
+/* ─────────────────────────────────────────
+   12. FOOTER 3D
+───────────────────────────────────────── */
+footer.in-view {
+  animation: footerRise 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes footerRise {
+  from { transform: translateY(10px); opacity: 0.5; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ─────────────────────────────────────────
+   13. SECTION SPACING FIX
+   Eliminate phantom gaps caused by flip cards
+───────────────────────────────────────── */
+
+/* Remove any body-level perspective that breaks layout */
+body { perspective: none !important; }
+
+/* Clamp section padding so it doesn't stack with transform gaps */
+.sec {
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+}
+
+/* Remove the tilted grid-bg that was adding visual height */
+.grid-bg {
+  transform: none !important;
+}
+
+/* ─────────────────────────────────────────
+   14. RESPONSIVE — reduce 3D on mobile
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .proj-card-3d        { height: auto; min-height: 420px; }
+  .proj-card-3d:hover .proj-card-inner { transform: none; }
+  .proj-card-3d.flipped .proj-card-inner { transform: rotateY(180deg); }
+
+  .cert-card-3d        { height: auto; min-height: 280px; }
+  .cert-card-3d:hover .cert-card-inner { transform: none; }
+  .cert-card-3d.flipped .cert-card-inner { transform: rotateY(180deg); }
+
+  #skills-sphere { width: 240px; height: 240px; }
+
+  #contact .contact-inner::before,
+  #contact .contact-inner::after { display: none; }
+}
