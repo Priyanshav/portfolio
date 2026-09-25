@@ -310,6 +310,18 @@
     linear-gradient(135deg, #1c1206, #241705 60%, #140d04);
 }
 
+.cert-banner--pega {
+  background:
+    radial-gradient(90% 120% at 50% -10%, rgba(37,99,235,0.3), transparent 60%),
+    linear-gradient(135deg, #07152f, #0c2a5c 60%, #061124);
+}
+
+.cert-banner--englishscore {
+  background:
+    radial-gradient(90% 120% at 50% -10%, rgba(168,85,247,0.34), transparent 60%),
+    linear-gradient(135deg, #17093d, #32106b 60%, #10062b);
+}
+
 /* Decorative guilloché grid */
 .cert-banner::before {
   content: '';
