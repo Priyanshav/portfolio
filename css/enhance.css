@@ -322,6 +322,12 @@
     linear-gradient(135deg, #17093d, #32106b 60%, #10062b);
 }
 
+.cert-banner--shl {
+  background:
+    radial-gradient(90% 120% at 50% -10%, rgba(20,184,166,0.3), transparent 60%),
+    linear-gradient(135deg, #062b35, #0a5260 60%, #041c27);
+}
+
 /* Decorative guilloché grid */
 .cert-banner::before {
   content: '';
