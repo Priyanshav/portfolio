@@ -15,7 +15,7 @@
   var API = 'https://backend-go.takeuforward.org/api/v1/shared/profile/dsa-progress/' + USER;
 
   /* Saved snapshot — used if the live API is unreachable/CORS-blocked. */
-  var FALLBACK = { solvedEasy: 145, solvedMedium: 67, solvedHard: 38 };
+  var FALLBACK = { solvedEasy: 57, solvedMedium: 146, solvedHard: 36, totalSolved: 255 };
 
   /* TUF catalogue sizes (denominators shown on the profile page). */
   var TOTALS = { easy: 374, medium: 477, hard: 253 };
@@ -60,7 +60,8 @@
     var e = stats.solvedEasy || 0;
     var m = stats.solvedMedium || 0;
     var h = stats.solvedHard || 0;
-    animateCount(totalEl, e + m + h);
+    var totalSolved = typeof stats.totalSolved === 'number' ? stats.totalSolved : e + m + h;
+    animateCount(totalEl, totalSolved);
     setRow('easy', e);
     setRow('medium', m);
     setRow('hard', h);
@@ -89,7 +90,8 @@
             render({
               solvedEasy: d.solvedEasy,
               solvedMedium: d.solvedMedium,
-              solvedHard: d.solvedHard
+              solvedHard: d.solvedHard,
+              totalSolved: typeof d.totalSolved === 'number' ? d.totalSolved : (d.solvedEasy || 0) + (d.solvedMedium || 0) + (d.solvedHard || 0)
             }, true);
           }
         })
