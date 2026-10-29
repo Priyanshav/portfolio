@@ -1856,6 +1856,10 @@ p.sec-num,
   justify-self: end;
 }
 
+.certificate-book.book-ready:not(.is-open) .book-controls {
+  visibility: hidden;
+}
+
 .book-cover {
   position: absolute;
   z-index: 4;
