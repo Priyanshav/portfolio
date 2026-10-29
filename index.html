@@ -3,62 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Priyanshu Kumar — Software Development Engineer &amp; Cybersecurity Expert." />
+  <meta name="description" content="Priyanshu Kumar, Computer Science undergraduate at NIET building cybersecurity projects and software." />
   <meta name="author" content="Priyanshu Kumar" />
-  <title>Priyanshu Kumar — Dev &amp; Cybersecurity</title>
+  <title>Priyanshu Kumar | Software and Security</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/enhance.css" />
-  <link rel="stylesheet" href="css/cyber.css" />
-  <link rel="stylesheet" href="css/tuf.css" />
-  <link rel="stylesheet" href="css/cursor.css" />
-  <link rel="stylesheet" href="css/loader.css" />
-  <link rel="stylesheet" href="css/premium.css" />
-  <!-- 3D layer -->
-  <link rel="stylesheet" href="css/three-d.css" />
-  <!-- Cyber theme: overrides ALL blue → terminal green -->
-  <link rel="stylesheet" href="css/cyber-theme.css" />
-  <!-- Spacing fix: clips decorative overflow, enforces explicit heights (MUST be last) -->
-  <link rel="stylesheet" href="css/spacing-fix.css" />
+  <link rel="stylesheet" href="css/portfolio-refresh.css" />
 </head>
 <body>
 
-  <!-- =============================================
-       LOADING SCREEN
-  ============================================= -->
-  <div id="loader" role="status" aria-label="Loading portfolio">
-    <canvas id="loader-matrix"></canvas>
-    <div class="loader-content">
-      <div class="loader-logo">&lt;<span>PK</span>/&gt;</div>
-      <div class="loader-terminal" aria-hidden="true">
-        <div class="terminal-lines" id="terminal-lines"></div>
-        <span class="terminal-cursor">_</span>
-      </div>
-      <div class="loader-bar-wrap">
-        <div class="loader-bar" id="loader-bar"></div>
-      </div>
-      <div class="loader-pct" id="loader-pct" aria-live="polite">0%</div>
-    </div>
-  </div>
-
-  <!-- Scroll progress -->
-  <div class="scroll-progress" id="scroll-progress"></div>
-
-  <!-- Background canvas -->
-  <canvas id="particles"></canvas>
-  <div class="grid-bg"></div>
-  <div id="cursor-glow"></div>
-
-  <!-- =============================================
-       NAVBAR  (Experience link removed)
-  ============================================= -->
+  <!-- Navigation -->
   <nav id="navbar">
     <a href="#hero" class="nav-logo glitch">&lt;<span>PK</span>/&gt;</a>
 
@@ -88,37 +43,29 @@
     <a href="assets/Priyanshu_Kumar_Resume.pdf" download onclick="closeMobileMenu()">&#8595; Download Resume</a>
   </div>
 
-  <!-- =============================================
-       HERO
-  ============================================= -->
+  <!-- Introduction -->
   <section id="hero">
-    <canvas id="three-hero" aria-hidden="true"></canvas>
     <div class="container">
       <div class="hero-inner">
 
         <div class="hero-text">
-          <p class="term-prompt">
-            <span class="tp-user">priyanshav</span><span class="tp-at">@</span><span class="tp-host">kali</span>:<span class="tp-dir">~/portfolio</span> <span class="tp-dollar">$</span> whoami
-          </p>
           <p class="hero-tag">
-            <span class="dot"></span>AVAILABLE FOR OPPORTUNITIES
+            Computer Science undergraduate at NIET
           </p>
           <h1 class="hero-name">
-            Hi, I&rsquo;m
-            <span class="name-line glitch">Priyanshu Kumar</span>
+            Priyanshu Kumar
           </h1>
           <p class="hero-role">
-            <span class="typed" id="typedRole"></span><span class="cursor">|</span>
+            Software Development and Cybersecurity
           </p>
           <p class="hero-desc">
-            CS undergraduate with hands-on experience in
-            <strong>Cybersecurity</strong>, <strong>Software Development</strong>, and
-            <strong>AI-powered applications</strong>.
-            I build secure, scalable systems &mdash; and hunt threats before they hunt you.
+            I study computer science at NIET and build software, AI and security projects.
+            Recent work includes a deployed AI medical question-answering app and a customer
+            data transformation tool.
           </p>
           <div class="hero-btns">
-            <a href="#projects" class="btn-primary">View My Work</a>
-            <a href="#contact"  class="btn-outline">Let&rsquo;s Connect</a>
+            <a href="#projects" class="btn-primary">View projects</a>
+            <a href="#contact" class="btn-outline">Contact me</a>
           </div>
         </div>
 
@@ -128,56 +75,12 @@
               <img src="assets/profile.jpeg" alt="Priyanshu Kumar" class="avatar-photo" />
             </div>
           </div>
-          <div class="hero-stats">
-            <div class="h-stat">
-              <span class="num" data-target="9.08">9.08</span>
-              <span class="lbl">CGPA</span>
-            </div>
-            <div class="h-stat">
-              <span class="num" data-target="200" data-suffix="+">200+</span>
-              <span class="lbl">LEETCODE</span>
-            </div>
-            <div class="h-stat">
-              <span class="num" data-target="3" data-suffix="+">3+</span>
-              <span class="lbl">PROJECTS</span>
-            </div>
-          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-
-  <!-- =============================================
-       TECH MARQUEE
-  ============================================= -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">Python</span>
-      <span class="marquee-item">Cybersecurity</span>
-      <span class="marquee-item">Machine Learning</span>
-      <span class="marquee-item">Wireshark</span>
-      <span class="marquee-item">LangChain</span>
-      <span class="marquee-item">Kali Linux</span>
-      <span class="marquee-item">Flask</span>
-      <span class="marquee-item">Docker</span>
-      <span class="marquee-item">Nmap</span>
-      <span class="marquee-item">Hugging Face</span>
-      <span class="marquee-item">PostgreSQL</span>
-      <span class="marquee-item">Python</span>
-      <span class="marquee-item">Cybersecurity</span>
-      <span class="marquee-item">Machine Learning</span>
-      <span class="marquee-item">Wireshark</span>
-      <span class="marquee-item">LangChain</span>
-      <span class="marquee-item">Kali Linux</span>
-      <span class="marquee-item">Flask</span>
-      <span class="marquee-item">Docker</span>
-      <span class="marquee-item">Nmap</span>
-      <span class="marquee-item">Hugging Face</span>
-      <span class="marquee-item">PostgreSQL</span>
-    </div>
-  </div>
 
   <!-- =============================================
        01. ABOUT
@@ -207,11 +110,10 @@
             deepening knowledge in <strong>SQL</strong> and <strong>Computer Networks</strong>.
           </p>
           <p>
-            The best engineers don&rsquo;t just build &mdash; they think like attackers
-            to <strong>build unbreakable</strong>.
+            I use an attacker&rsquo;s perspective to evaluate software and improve its security.
           </p>
           <div class="edu-card">
-            <span class="icon">&#x1F393;</span>
+            <span class="icon" aria-hidden="true">EDUCATION</span>
             <div class="edu-info">
               <span class="edu-name">Noida Institute of Engineering &amp; Technology</span>
               <span class="edu-detail">B.Tech CSE &nbsp;&middot;&nbsp; 2023 &ndash; Present</span>
@@ -220,12 +122,8 @@
           </div>
         </div>
 
-        <!-- 3D Skills Sphere -->
         <div class="reveal-right">
-          <div class="skills-sphere-wrap">
-            <div id="skills-sphere" aria-label="3D skills cloud"></div>
-          </div>
-          <div class="skills-grid" style="margin-top:24px;">
+          <div class="skills-grid">
             <div class="skill-group">
               <h4>Languages</h4>
               <div class="skill-tags">
@@ -254,6 +152,7 @@
                 <span class="skill-tag">Streamlit</span>
                 <span class="skill-tag">Flask</span>
                 <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">RAG</span>
                 <span class="skill-tag">REST APIs</span>
                 <span class="skill-tag">Hugging Face</span>
               </div>
@@ -271,12 +170,48 @@
           </div>
         </div>
       </div>
+
+      <div class="skills-orbit-section reveal">
+        <div class="skills-orbit" id="skills-orbit" role="group" aria-label="Technical skills rotating in orbit">
+          <div class="skills-orbit-track skills-orbit-track--outer" data-orbit-speed="0.16">
+            <span class="skills-orbit-tag">Python</span>
+            <span class="skills-orbit-tag">Java</span>
+            <span class="skills-orbit-tag">SQL</span>
+            <span class="skills-orbit-tag">HTML5</span>
+            <span class="skills-orbit-tag">CSS3</span>
+            <span class="skills-orbit-tag">Wireshark</span>
+            <span class="skills-orbit-tag">Nmap</span>
+            <span class="skills-orbit-tag">Kali Linux</span>
+          </div>
+          <div class="skills-orbit-track skills-orbit-track--middle" data-orbit-speed="-0.22">
+            <span class="skills-orbit-tag">John the Ripper</span>
+            <span class="skills-orbit-tag">Cryptography</span>
+            <span class="skills-orbit-tag">Network Security</span>
+            <span class="skills-orbit-tag">LangChain</span>
+            <span class="skills-orbit-tag">Streamlit</span>
+            <span class="skills-orbit-tag">Flask</span>
+            <span class="skills-orbit-tag">Scikit-learn</span>
+            <span class="skills-orbit-tag">RAG</span>
+          </div>
+          <div class="skills-orbit-track skills-orbit-track--inner" data-orbit-speed="0.3">
+            <span class="skills-orbit-tag">REST APIs</span>
+            <span class="skills-orbit-tag">Hugging Face</span>
+            <span class="skills-orbit-tag">Git / GitHub</span>
+            <span class="skills-orbit-tag">Linux</span>
+            <span class="skills-orbit-tag">PostgreSQL</span>
+            <span class="skills-orbit-tag">MS SQL</span>
+            <span class="skills-orbit-tag">Docker</span>
+          </div>
+          <div class="skills-orbit-center" aria-hidden="true">
+            <strong>Skills</strong>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- =============================================
-       02. PROJECTS  — 2×2 grid, 3D flip cards
-       Hover = flip on desktop | Tap = flip on mobile
+       02. PROJECTS
   ============================================= -->
   <section id="projects" class="sec">
     <div class="container">
@@ -286,7 +221,6 @@
         <div class="sec-line"></div>
       </div>
 
-      <!-- projects-grid is forced to 2 columns in three-d.css -->
       <div class="projects-grid">
 
         <!-- ─ Card 1: AI SOC Platform ─ -->
@@ -294,46 +228,39 @@
           <div class="proj-card-inner">
             <div class="proj-card-front proj-card">
               <div class="proj-img-wrap">
-                <div class="proj-thumb" style="background:linear-gradient(135deg,#050810,#120a1e);">&#x1F6E1;&#xFE0F;</div>
+                <div class="proj-thumb">
+                  <svg class="project-art project-art--soc" viewBox="0 0 180 100" aria-hidden="true">
+                    <path d="M90 10 119 21v23c0 20-12 34-29 44-17-10-29-24-29-44V21L90 10Z" />
+                    <path d="M78 49h24M90 37v24" />
+                    <circle cx="34" cy="30" r="4" /><circle cx="146" cy="30" r="4" />
+                    <circle cx="38" cy="75" r="4" /><circle cx="142" cy="75" r="4" />
+                    <path d="m38 34 15 10m89-10-15 10M42 73l17-12m79 12-17-12" />
+                  </svg>
+                  <span class="proj-thumb-label">SOC</span>
+                </div>
                 <div class="proj-img-overlay"></div>
-                <span class="badge-soon">&#x1F512; COMING SOON</span>
+                <span class="badge-soon">In development</span>
               </div>
               <div class="proj-body">
-                <p class="featured-lbl">&#9733; FLAGSHIP PROJECT</p>
+                <p class="featured-lbl">IN DEVELOPMENT</p>
                 <div class="proj-top">
-                  <span class="proj-icon">&#x1F510;</span>
+                  <span class="proj-icon">SECURITY</span>
                   <span class="proj-arrow">&#8599;</span>
                 </div>
                 <h3 class="proj-name">AI-Powered SOC Platform</h3>
-                <p class="proj-desc">
-                  Full-stack cybersecurity monitoring with ML alert classification,
-                  Wazuh SIEM, Suricata IDS, MITRE ATT&amp;CK, and LLM incident reports.
-                </p>
-                <div class="proj-tags">
-                  <span class="proj-tag">Python</span>
-                  <span class="proj-tag">Flask</span>
-                  <span class="proj-tag">Wazuh</span>
-                  <span class="proj-tag">Scikit-learn</span>
-                  <span class="proj-tag">Anthropic API</span>
-                </div>
+                <p class="proj-desc">Security monitoring with ML-assisted alert triage.</p>
+                <button class="project-flip-button" type="button" aria-controls="project-details-soc" aria-expanded="false">Flip for details <span aria-hidden="true">&#8634;</span></button>
               </div>
-              <div class="front-flip-hint">&#8635; hover to flip</div>
             </div>
-            <div class="proj-card-back">
-              <div class="back-icon">&#x1F510;</div>
-              <div class="back-title">AI-Powered SOC Platform</div>
-              <div class="back-desc">
-                RandomForest + Isolation Forest alert classification &middot; Wazuh SIEM
-                &middot; Suricata IDS &middot; MITRE ATT&amp;CK mapping &middot; LLM report generation.
+            <div class="proj-card-back" id="project-details-soc" aria-hidden="true" inert>
+              <p class="project-back-label">IN DEVELOPMENT</p>
+              <h3 class="back-title">AI-Powered SOC Platform</h3>
+              <p class="back-desc">The platform brings together Wazuh SIEM and Suricata IDS alerts, then uses a machine-learning classifier to help prioritize activity. MITRE ATT&amp;CK context and LLM-assisted incident reports are planned as part of the investigation workflow.</p>
+              <div class="back-tags" aria-label="Technology stack">
+                <span class="back-tag">Wazuh</span><span class="back-tag">Suricata</span><span class="back-tag">Scikit-learn</span><span class="back-tag">Flask</span>
               </div>
-              <div class="back-tags">
-                <span class="back-tag">Python</span><span class="back-tag">Flask</span>
-                <span class="back-tag">Scikit-learn</span><span class="back-tag">Wazuh</span>
-                <span class="back-tag">Suricata</span><span class="back-tag">Anthropic API</span>
-                <span class="back-tag">Chart.js</span>
-              </div>
-              <div class="back-link-disabled">&#x1F512; Coming Soon</div>
-              <div class="back-flip-hint">&#8635; hover to flip back</div>
+              <p class="project-back-status">This project is in development; a live demo is not available yet.</p>
+              <button class="project-flip-button project-flip-button--back" type="button" aria-controls="project-details-soc" aria-expanded="false">Back to overview <span aria-hidden="true">&#8634;</span></button>
             </div>
           </div>
         </div>
@@ -343,45 +270,36 @@
           <div class="proj-card-inner">
             <div class="proj-card-front proj-card">
               <div class="proj-img-wrap">
-                <div class="proj-thumb" style="background:linear-gradient(135deg,#0a1628,#081424);">&#x1F3E5;</div>
+                <div class="proj-thumb">
+                  <svg class="project-art project-art--medical" viewBox="0 0 180 100" aria-hidden="true">
+                    <path d="M55 18h42l18 18v48H55z" />
+                    <path d="M97 18v19h18M66 49h38M66 59h30M66 69h22" />
+                    <circle cx="125" cy="64" r="17" /><path d="m137 77 12 12M125 54v20m-10-10h20" />
+                  </svg>
+                  <span class="proj-thumb-label">MEDICAL RAG</span>
+                </div>
                 <div class="proj-img-overlay"></div>
                 <span class="badge-live">LIVE</span>
               </div>
               <div class="proj-body">
                 <div class="proj-top">
-                  <span class="proj-icon">&#x1F916;</span>
+                  <span class="proj-icon">AI</span>
                   <span class="proj-arrow">&#8599;</span>
                 </div>
                 <h3 class="proj-name">Medical AI Chatbot</h3>
-                <p class="proj-desc">
-                  LLM-powered RAG chatbot for medical queries. Sentence Transformers
-                  + FAISS for semantic search over medical PDFs.
-                </p>
-                <div class="proj-tags">
-                  <span class="proj-tag">Python</span>
-                  <span class="proj-tag">LangChain</span>
-                  <span class="proj-tag">Groq</span>
-                  <span class="proj-tag">FAISS</span>
-                  <span class="proj-tag">Streamlit</span>
-                </div>
+                <p class="proj-desc">Ask questions about medical PDFs with document-grounded answers.</p>
+                <button class="project-flip-button" type="button" aria-controls="project-details-medical" aria-expanded="false">Flip for details <span aria-hidden="true">&#8634;</span></button>
               </div>
-              <div class="front-flip-hint">&#8635; hover to flip</div>
             </div>
-            <div class="proj-card-back">
-              <div class="back-icon">&#x1F916;</div>
-              <div class="back-title">Medical AI Chatbot</div>
-              <div class="back-desc">
-                Deployed on Hugging Face Spaces &middot; FAISS vector store &middot;
-                Groq LLM &middot; Sentence Transformers &middot; Streamlit UI.
+            <div class="proj-card-back" id="project-details-medical" aria-hidden="true" inert>
+              <p class="project-back-label">AI · RETRIEVAL-AUGMENTED GENERATION</p>
+              <h3 class="back-title">Medical AI Chatbot</h3>
+              <p class="back-desc">Built with LangChain, FAISS, and Groq, the chatbot searches The Gale Encyclopedia of Medicine for relevant passages and passes them to the GPT OSS 20B model as context. It is designed to answer from that source only and avoid making up a response when the encyclopedia does not support one.</p>
+              <div class="back-tags" aria-label="Technology stack">
+                <span class="back-tag">LangChain</span><span class="back-tag">FAISS</span><span class="back-tag">Groq</span><span class="back-tag">GPT OSS 20B</span>
               </div>
-              <div class="back-tags">
-                <span class="back-tag">Python</span><span class="back-tag">LangChain</span>
-                <span class="back-tag">Groq</span><span class="back-tag">Hugging Face</span>
-                <span class="back-tag">Streamlit</span><span class="back-tag">FAISS</span>
-              </div>
-              <a href="https://huggingface.co/spaces/Priyanshav/medical-chatbot"
-                 target="_blank" rel="noopener noreferrer" class="back-link">&#8599; View Live</a>
-              <div class="back-flip-hint">&#8635; hover to flip back</div>
+              <a class="back-link" href="https://huggingface.co/spaces/Priyanshav/medical-chatbot" target="_blank" rel="noopener noreferrer">Open live project &#8599;</a>
+              <button class="project-flip-button project-flip-button--back" type="button" aria-controls="project-details-medical" aria-expanded="false">Back to overview <span aria-hidden="true">&#8634;</span></button>
             </div>
           </div>
         </div>
@@ -391,43 +309,36 @@
           <div class="proj-card-inner">
             <div class="proj-card-front proj-card">
               <div class="proj-img-wrap">
-                <div class="proj-thumb" style="background:linear-gradient(135deg,#0a180a,#0d2010);">&#x1F4CA;</div>
+                <div class="proj-thumb">
+                  <svg class="project-art project-art--data" viewBox="0 0 180 100" aria-hidden="true">
+                    <rect x="44" y="23" width="92" height="58" rx="2" />
+                    <path d="M58 39h28M58 49h40M58 59h22M58 69h48" />
+                    <path d="m109 44 8 8 13-16M109 65l8 8 13-16" />
+                  </svg>
+                  <span class="proj-thumb-label">DATA TOOLS</span>
+                </div>
                 <div class="proj-img-overlay"></div>
                 <span class="badge-live">LIVE</span>
               </div>
               <div class="proj-body">
                 <div class="proj-top">
-                  <span class="proj-icon">&#x2699;&#xFE0F;</span>
+                  <span class="proj-icon">DATA</span>
                   <span class="proj-arrow">&#8599;</span>
                 </div>
                 <h3 class="proj-name">Customer Data Transformer</h3>
-                <p class="proj-desc">
-                  Web app for transforming, cleaning, and processing customer datasets.
-                  Streamlines data pipeline workflows with an intuitive UI on Render.
-                </p>
-                <div class="proj-tags">
-                  <span class="proj-tag">Python</span>
-                  <span class="proj-tag">REST API</span>
-                  <span class="proj-tag">PostgreSQL</span>
-                  <span class="proj-tag">Render</span>
-                </div>
+                <p class="proj-desc">Unifies recruiter, ATS, and resume data into candidate profiles.</p>
+                <button class="project-flip-button" type="button" aria-controls="project-details-transformer" aria-expanded="false">Flip for details <span aria-hidden="true">&#8634;</span></button>
               </div>
-              <div class="front-flip-hint">&#8635; hover to flip</div>
             </div>
-            <div class="proj-card-back">
-              <div class="back-icon">&#x1F4CA;</div>
-              <div class="back-title">Customer Data Transformer</div>
-              <div class="back-desc">
-                Deployed on Render &middot; REST API backend &middot; PostgreSQL
-                persistence &middot; Resume parsing &middot; Clean data pipeline UI.
+            <div class="proj-card-back" id="project-details-transformer" aria-hidden="true" inert>
+              <p class="project-back-label">DATA · TRANSFORMATION</p>
+              <h3 class="back-title">Customer Data Transformer</h3>
+              <p class="back-desc">It combines recruiter CSVs, ATS JSON, and resume files (PDF or TXT) into one normalized, deduplicated profile per candidate. Profiles retain source provenance and confidence, and the output shape can be configured at runtime.</p>
+              <div class="back-tags" aria-label="Technology stack">
+                <span class="back-tag">Python</span><span class="back-tag">REST API</span><span class="back-tag">PostgreSQL</span><span class="back-tag">Render</span>
               </div>
-              <div class="back-tags">
-                <span class="back-tag">Python</span><span class="back-tag">REST API</span>
-                <span class="back-tag">PostgreSQL</span><span class="back-tag">Render</span>
-              </div>
-              <a href="https://customer-data-transformer.onrender.com/"
-                 target="_blank" rel="noopener noreferrer" class="back-link">&#8599; View Live</a>
-              <div class="back-flip-hint">&#8635; hover to flip back</div>
+              <a class="back-link" href="https://customer-data-transformer.onrender.com/" target="_blank" rel="noopener noreferrer">Open live project &#8599;</a>
+              <button class="project-flip-button project-flip-button--back" type="button" aria-controls="project-details-transformer" aria-expanded="false">Back to overview <span aria-hidden="true">&#8634;</span></button>
             </div>
           </div>
         </div>
@@ -437,44 +348,36 @@
           <div class="proj-card-inner">
             <div class="proj-card-front proj-card">
               <div class="proj-img-wrap">
-                <div class="proj-thumb" style="background:linear-gradient(135deg,#12061a,#1a0a2e);">&#x1F9EC;</div>
+                <div class="proj-thumb">
+                  <svg class="project-art project-art--clinical" viewBox="0 0 180 100" aria-hidden="true">
+                    <path d="M42 79h98M51 71V53h18v18m10 0V39h18v32m10 0V26h18v45" />
+                    <path d="m53 42 21-12 20 7 28-17" />
+                    <circle cx="53" cy="42" r="3" /><circle cx="74" cy="30" r="3" /><circle cx="94" cy="37" r="3" /><circle cx="122" cy="20" r="3" />
+                  </svg>
+                  <span class="proj-thumb-label">CLINICAL DATA</span>
+                </div>
                 <div class="proj-img-overlay"></div>
                 <span class="badge-live">LIVE</span>
               </div>
               <div class="proj-body">
                 <div class="proj-top">
-                  <span class="proj-icon">&#x1F3E5;</span>
+                  <span class="proj-icon">ANALYTICS</span>
                   <span class="proj-arrow">&#8599;</span>
                 </div>
                 <h3 class="proj-name">ClinicalOps India</h3>
-                <p class="proj-desc">
-                  Multi-site clinical trial command center &mdash; recruitment,
-                  enrollment funnels, site leaderboards &amp; ML predictive analytics.
-                </p>
-                <div class="proj-tags">
-                  <span class="proj-tag">Python</span>
-                  <span class="proj-tag">Streamlit</span>
-                  <span class="proj-tag">Scikit-learn</span>
-                  <span class="proj-tag">Plotly</span>
-                </div>
+                <p class="proj-desc">A dashboard for clinical trial recruitment and enrollment.</p>
+                <button class="project-flip-button" type="button" aria-controls="project-details-clinical" aria-expanded="false">Flip for details <span aria-hidden="true">&#8634;</span></button>
               </div>
-              <div class="front-flip-hint">&#8635; hover to flip</div>
             </div>
-            <div class="proj-card-back">
-              <div class="back-icon">&#x1F9EC;</div>
-              <div class="back-title">ClinicalOps India</div>
-              <div class="back-desc">
-                5 Indian hospital sites &middot; Enrollment funnel analytics &middot;
-                Adherence risk scoring &middot; ML model studio &middot; Plotly dashboards.
+            <div class="proj-card-back" id="project-details-clinical" aria-hidden="true" inert>
+              <p class="project-back-label">ANALYTICS · CLINICAL TRIALS</p>
+              <h3 class="back-title">ClinicalOps India</h3>
+              <p class="back-desc">This Streamlit dashboard simulates multi-site trial monitoring, bringing recruitment, medication adherence, site performance, and data quality into interactive reports. A machine-learning model estimates patient dropout risk to support operational review.</p>
+              <div class="back-tags" aria-label="Technology stack">
+                <span class="back-tag">Python</span><span class="back-tag">Streamlit</span><span class="back-tag">Scikit-learn</span><span class="back-tag">Plotly</span>
               </div>
-              <div class="back-tags">
-                <span class="back-tag">Python</span><span class="back-tag">Streamlit</span>
-                <span class="back-tag">Pandas</span><span class="back-tag">Scikit-learn</span>
-                <span class="back-tag">Plotly</span><span class="back-tag">NumPy</span>
-              </div>
-              <a href="https://clinicalopstrail-india.streamlit.app/"
-                 target="_blank" rel="noopener noreferrer" class="back-link">&#8599; View Live</a>
-              <div class="back-flip-hint">&#8635; hover to flip back</div>
+              <a class="back-link" href="https://clinicalopstrail-india.streamlit.app/" target="_blank" rel="noopener noreferrer">Open live project &#8599;</a>
+              <button class="project-flip-button project-flip-button--back" type="button" aria-controls="project-details-clinical" aria-expanded="false">Back to overview <span aria-hidden="true">&#8634;</span></button>
             </div>
           </div>
         </div>
@@ -489,8 +392,8 @@
   <section id="stats" class="sec sec-alt">
     <div class="container">
       <div class="sec-head reveal up">
-        <p class="sec-num">03. ACTIVITY</p>
-        <h2 class="sec-title">My Stats</h2>
+        <p class="sec-num">03. DEVELOPMENT ACTIVITY</p>
+        <h2 class="sec-title">Profiles and activity</h2>
         <div class="sec-line"></div>
       </div>
 
@@ -508,10 +411,10 @@
           </div>
           <div class="gh-body">
             <div class="gh-metrics">
-              <div class="gh-metric"><span class="gh-num" id="gh-repos">&mdash;</span><span class="gh-lbl">Repos</span></div>
-              <div class="gh-metric"><span class="gh-num" id="gh-stars">&mdash;</span><span class="gh-lbl">Stars</span></div>
-              <div class="gh-metric"><span class="gh-num" id="gh-followers">&mdash;</span><span class="gh-lbl">Followers</span></div>
-              <div class="gh-metric"><span class="gh-num" id="gh-following">&mdash;</span><span class="gh-lbl">Following</span></div>
+              <div class="gh-metric"><span class="gh-num" id="gh-repos"></span><span class="gh-lbl">Repos</span></div>
+              <div class="gh-metric"><span class="gh-num" id="gh-stars"></span><span class="gh-lbl">Stars</span></div>
+              <div class="gh-metric"><span class="gh-num" id="gh-followers"></span><span class="gh-lbl">Followers</span></div>
+              <div class="gh-metric"><span class="gh-num" id="gh-following"></span><span class="gh-lbl">Following</span></div>
             </div>
             <div class="gh-langs">
               <div class="gh-sub-head"><span>Top Languages</span></div>
@@ -531,84 +434,72 @@
                 More
               </div>
             </div>
-            <div class="gh-status" id="gh-status">Loading live stats&hellip;</div>
+            <div class="gh-status" id="gh-status">GitHub profile data loads from the public API.</div>
           </div>
         </div>
 
-        <!-- Right column: LeetCode + TakeUForward -->
-        <div class="stats-col">
-
-          <div class="gh-card reveal-right">
-            <div class="tilt-shine"></div>
+        <div class="stats-col profile-stats">
+          <div class="gh-card platform-card leetcode-card">
             <div class="stats-header">
-              <span class="s-icon">&#x1F9E9;</span>
+              <span class="s-icon platform-mark" aria-hidden="true">LC</span>
               <h3>LeetCode</h3>
               <a href="https://leetcode.com/u/Priyanshav/" target="_blank" rel="noopener noreferrer">@Priyanshav &#8599;</a>
             </div>
             <div class="leet-native">
-              <div class="leet-ring">
-                <svg viewBox="0 0 160 160">
-                  <defs>
-                    <linearGradient id="leetGrad" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stop-color="#00f5ff" />
-                      <stop offset="100%" stop-color="#a855f7" />
-                    </linearGradient>
-                  </defs>
-                  <circle class="ring-bg" cx="80" cy="80" r="70" />
-                  <circle class="ring-fg" id="leetRing" cx="80" cy="80" r="70" />
+              <div class="leet-ring" aria-hidden="true">
+                <svg viewBox="0 0 160 160" focusable="false">
+                  <circle class="ring-bg" cx="80" cy="80" r="70"></circle>
+                  <circle class="ring-fg" cx="80" cy="80" r="70"></circle>
                 </svg>
                 <div class="leet-ring-center">
                   <span class="big">200+</span>
                   <span class="small">SOLVED</span>
                 </div>
               </div>
-              <a href="https://leetcode.com/u/Priyanshav/" target="_blank" rel="noopener noreferrer"
-                 class="cert-btn cert-btn--ghost" style="flex:initial;padding:9px 22px;">View Profile &#8599;</a>
+              <p class="platform-stat-note">Previously recorded profile total</p>
             </div>
           </div>
 
-          <div class="gh-card tuf-card reveal-right">
-            <div class="tilt-shine"></div>
+          <div class="gh-card platform-card tuf-card">
             <div class="stats-header">
-              <span class="s-icon">&#x1F680;</span>
+              <span class="s-icon platform-mark" aria-hidden="true">TUF</span>
               <h3>TakeUForward</h3>
               <a href="https://takeuforward.org/profile/Priyanshav" target="_blank" rel="noopener noreferrer">@Priyanshav &#8599;</a>
             </div>
             <div class="tuf-body">
               <div class="tuf-top">
                 <div class="tuf-total">
-                  <span class="tuf-total-num" id="tuf-total">240</span>
+                  <span class="tuf-total-num" id="tuf-total">239</span>
                   <span class="tuf-total-lbl">DSA SOLVED</span>
                 </div>
                 <div class="tuf-breakdown">
                   <div class="tuf-row">
                     <span class="tuf-diff easy">Basic</span>
-                    <div class="tuf-bar easy"><i id="tuf-easy-bar"></i></div>
+                    <div class="tuf-bar easy" aria-hidden="true"><i id="tuf-easy-bar" style="width:15%"></i></div>
                     <span class="tuf-count" id="tuf-easy"><b>57</b> <span class="den">/ 374</span></span>
                   </div>
                   <div class="tuf-row">
                     <span class="tuf-diff medium">Core</span>
-                    <div class="tuf-bar medium"><i id="tuf-medium-bar"></i></div>
+                    <div class="tuf-bar medium" aria-hidden="true"><i id="tuf-medium-bar" style="width:31%"></i></div>
                     <span class="tuf-count" id="tuf-medium"><b>146</b> <span class="den">/ 477</span></span>
                   </div>
                   <div class="tuf-row">
                     <span class="tuf-diff hard">Pro</span>
-                    <div class="tuf-bar hard"><i id="tuf-hard-bar"></i></div>
+                    <div class="tuf-bar hard" aria-hidden="true"><i id="tuf-hard-bar" style="width:14%"></i></div>
                     <span class="tuf-count" id="tuf-hard"><b>36</b> <span class="den">/ 253</span></span>
                   </div>
                 </div>
               </div>
-              <div class="gh-status" id="tuf-status">Loading live stats&hellip;</div>
+              <div class="gh-status" id="tuf-status">Saved profile snapshot · checking for updates</div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </section>
 
   <!-- =============================================
-       04. CERTIFICATIONS  — 3D flip cards
+       04. CERTIFICATIONS
   ============================================= -->
   <section id="certs" class="sec">
     <div class="container">
@@ -618,15 +509,48 @@
         <div class="sec-line"></div>
       </div>
 
-      <div class="certs-grid">
+      <div class="certificate-book" id="certificate-book">
+        <button class="book-cover" id="book-cover" type="button" aria-expanded="false" aria-controls="book-interior">
+          <span class="book-cover-face">
+            <span class="book-cover-spine" aria-hidden="true"></span>
+            <span class="book-cover-content">
+              <span class="book-cover-kicker">PORTFOLIO · 2026</span>
+              <span class="book-cover-title">Certificates<br />&amp; Credentials</span>
+              <span class="book-cover-description">A record of learning in software, cybersecurity, data, and professional skills.</span>
+              <span class="book-cover-count" id="book-cover-count">8 DOCUMENTS</span>
+              <span class="book-cover-action">Open the book <span aria-hidden="true">&rarr;</span></span>
+            </span>
+          </span>
+          <span class="book-cover-back" aria-hidden="true">CREDENTIAL ARCHIVE</span>
+        </button>
+
+        <div class="book-interior" id="book-interior">
+          <aside class="book-intro">
+            <span class="book-intro-label">CREDENTIAL ARCHIVE</span>
+            <h3>Learning in practice</h3>
+            <p>Certificates, an internship record, and assessment results across cybersecurity, data science, and professional skills.</p>
+            <div class="book-index" aria-hidden="true">
+              <span>01 &mdash; Data science</span>
+              <span>02 &mdash; Cybersecurity</span>
+              <span>03 &mdash; Threat landscape</span>
+              <span>04 &mdash; Internship</span>
+              <span>05 &mdash; English proficiency</span>
+              <span>06 &mdash; Aptitude</span>
+              <span>07 &mdash; Generative AI</span>
+              <span>08 &mdash; Agentic AI</span>
+            </div>
+          </aside>
+
+          <div class="book-page" aria-label="Certificate pages">
+            <div class="certs-grid">
 
         <!-- Cert 1: NCET -->
-        <div class="cert-card-3d reveal">
+        <div class="cert-card-3d reveal is-current">
           <div class="cert-card-inner">
             <div class="cert-face cert-face-front cert-card">
               <div class="cert-banner cert-banner--ncert">
                 <span class="cert-verify">Verified</span>
-                <div class="cert-seal">&#x1F4F7;</div>
+                <div class="cert-seal" aria-hidden="true">DS</div>
                 <div class="cert-brand">NCET</div>
                 <span class="cert-shine"></span>
               </div>
@@ -635,16 +559,10 @@
                 <h3 class="cert-name">Data Scientist</h3>
                 <p class="cert-issuer">NCET</p>
                 <p class="cert-date">Issued Aug 02, 2026</p>
+                <p class="cert-description">Recognizes successful completion of the NCET Data Scientist assessment.</p>
               </div>
-            </div>
-            <div class="cert-face cert-face-back">
-              <div class="cb-seal">&#x1F4F7;</div>
-              <div class="cb-title">Data Scientist</div>
-              <div class="cb-issuer">NCET</div>
-              <div class="cb-date">Issued Aug 02, 2026</div>
-              <div class="cb-actions">
-                <a href="assets/NCET_Certificate.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-                <a href="assets/NCET_Certificate.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              <div class="front-links">
+                <a href="assets/NCET_Certificate.pdf" target="_blank" rel="noopener">View certificate</a>
               </div>
             </div>
           </div>
@@ -656,7 +574,7 @@
             <div class="cert-face cert-face-front cert-card">
               <div class="cert-banner cert-banner--cyber">
                 <span class="cert-verify">Verified</span>
-                <div class="cert-seal">&#x1F6E1;&#xFE0F;</div>
+                <div class="cert-seal" aria-hidden="true">FT</div>
                 <div class="cert-brand">Fortinet</div>
                 <span class="cert-shine"></span>
               </div>
@@ -665,16 +583,10 @@
                 <h3 class="cert-name">Getting Started in Cybersecurity 3.0</h3>
                 <p class="cert-issuer">Fortinet Training Institute</p>
                 <p class="cert-date">Issued Mar 28, 2026</p>
+                <p class="cert-description">An introductory course covering core cybersecurity concepts and the basics of protecting systems and information.</p>
               </div>
-            </div>
-            <div class="cert-face cert-face-back">
-              <div class="cb-seal">&#x1F6E1;&#xFE0F;</div>
-              <div class="cb-title">Getting Started in Cybersecurity 3.0</div>
-              <div class="cb-issuer">Fortinet Training Institute</div>
-              <div class="cb-date">Issued Mar 28, 2026 &middot; Signed by COO</div>
-              <div class="cb-actions">
-                <a href="assets/cert-cybersecurity.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-                <a href="assets/cert-cybersecurity.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              <div class="front-links">
+                <a href="assets/cert-cybersecurity.pdf" target="_blank" rel="noopener">View certificate</a>
               </div>
             </div>
           </div>
@@ -686,7 +598,7 @@
             <div class="cert-face cert-face-front cert-card">
               <div class="cert-banner cert-banner--threat">
                 <span class="cert-verify">Verified</span>
-                <div class="cert-seal">&#x1F310;</div>
+                <div class="cert-seal" aria-hidden="true">FT</div>
                 <div class="cert-brand">Fortinet</div>
                 <span class="cert-shine"></span>
               </div>
@@ -695,16 +607,10 @@
                 <h3 class="cert-name">Introduction to the Threat Landscape 3.0</h3>
                 <p class="cert-issuer">Fortinet Training Institute</p>
                 <p class="cert-date">Issued Mar 14, 2026</p>
+                <p class="cert-description">Introduces common cyber threats and attack methods to help learners understand the risks facing digital systems.</p>
               </div>
-            </div>
-            <div class="cert-face cert-face-back">
-              <div class="cb-seal">&#x1F310;</div>
-              <div class="cb-title">Introduction to the Threat Landscape 3.0</div>
-              <div class="cb-issuer">Fortinet Training Institute</div>
-              <div class="cb-date">Issued Mar 14, 2026 &middot; Signed by COO</div>
-              <div class="cb-actions">
-                <a href="assets/cert-threat-landscape.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-                <a href="assets/cert-threat-landscape.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              <div class="front-links">
+                <a href="assets/cert-threat-landscape.pdf" target="_blank" rel="noopener">View certificate</a>
               </div>
             </div>
           </div>
@@ -716,7 +622,7 @@
             <div class="cert-face cert-face-front cert-card">
               <div class="cert-banner cert-banner--pega">
                 <span class="cert-verify">Verified</span>
-                <div class="cert-seal">&#x1F3C6;</div>
+                <div class="cert-seal" aria-hidden="true">PEGA</div>
                 <div class="cert-brand">PEGA</div>
                 <span class="cert-shine"></span>
               </div>
@@ -725,16 +631,10 @@
                 <h3 class="cert-name">National Internship Program</h3>
                 <p class="cert-issuer">Pegasystems Worldwide India Private Limited</p>
                 <p class="cert-date">Completed Sep 03, 2026</p>
+                <p class="cert-description">A 60-hour industry-integrated program with hands-on learning in workflow automation, low-code technologies, and real-world project implementation.</p>
               </div>
-            </div>
-            <div class="cert-face cert-face-back">
-              <div class="cb-seal">&#x1F3C6;</div>
-              <div class="cb-title">National Internship Program</div>
-              <div class="cb-issuer">Pegasystems Worldwide India Private Limited</div>
-              <div class="cb-date">Aug 04 - Sep 03, 2026 &middot; 60 hours</div>
-              <div class="cb-actions">
-                <a href="assets/pega_certificate.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-                <a href="assets/pega_certificate.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              <div class="front-links">
+                <a href="assets/pega_certificate.pdf" target="_blank" rel="noopener">View certificate</a>
               </div>
             </div>
           </div>
@@ -746,7 +646,7 @@
             <div class="cert-face cert-face-front cert-card">
               <div class="cert-banner cert-banner--englishscore">
                 <span class="cert-verify">Verified</span>
-                <div class="cert-seal">&#x1F4AC;</div>
+                <div class="cert-seal" aria-hidden="true">C1</div>
                 <div class="cert-brand">EnglishScore</div>
                 <span class="cert-shine"></span>
               </div>
@@ -755,16 +655,10 @@
                 <h3 class="cert-name">EnglishScore Certificate</h3>
                 <p class="cert-issuer">British Council</p>
                 <p class="cert-date">Overall Score 551 &middot; CEFR C1</p>
+                <p class="cert-description">The report assesses English skills across grammar, vocabulary, reading, and listening, alongside communication, fluency, and pronunciation.</p>
               </div>
-            </div>
-            <div class="cert-face cert-face-back">
-              <div class="cb-seal">&#x1F4AC;</div>
-              <div class="cb-title">EnglishScore Certificate</div>
-              <div class="cb-issuer">British Council</div>
-              <div class="cb-date">Core Skills C1 &middot; Speaking B2 &middot; Writing C1</div>
-              <div class="cb-actions">
-                <a href="assets/EnglishScore_cert.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-                <a href="assets/EnglishScore_cert.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              <div class="front-links">
+                <a href="assets/EnglishScore_cert.pdf" target="_blank" rel="noopener">View certificate</a>
               </div>
             </div>
           </div>
@@ -776,7 +670,7 @@
             <div class="cert-face cert-face-front cert-card">
               <div class="cert-banner cert-banner--shl">
                 <span class="cert-verify">Verified</span>
-                <div class="cert-seal">&#x1F4CA;</div>
+                <div class="cert-seal" aria-hidden="true">SHL</div>
                 <div class="cert-brand">SHL</div>
                 <span class="cert-shine"></span>
               </div>
@@ -785,21 +679,74 @@
                 <h3 class="cert-name">SHL Aptitude Assessment</h3>
                 <p class="cert-issuer">SHL</p>
                 <p class="cert-date">Overall Score 100 &middot; Feb 24, 2026</p>
+                <p class="cert-description">The report includes scores for computer science, logical ability, programming, quantitative ability, English writing, automata, and more.</p>
               </div>
-            </div>
-            <div class="cert-face cert-face-back">
-              <div class="cb-seal">&#x1F4CA;</div>
-              <div class="cb-title">SHL Aptitude Assessment</div>
-              <div class="cb-issuer">Computer Science &middot; Logical Ability &middot; Programming</div>
-              <div class="cb-date">CS 100 &middot; Logic 62 &middot; Programming 80 &middot; Quant 69</div>
-              <div class="cb-actions">
-                <a href="assets/SHL_report.pdf" target="_blank" rel="noopener" class="cert-btn">View</a>
-                <a href="assets/SHL_report.pdf" download class="cert-btn cert-btn--ghost">Download</a>
+              <div class="front-links">
+                <a href="assets/SHL_report.pdf" target="_blank" rel="noopener">View report</a>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Cert 7: Adobe Creativity & GenAI -->
+        <div class="cert-card-3d reveal delay-6">
+          <div class="cert-card-inner">
+            <div class="cert-face cert-face-front cert-card">
+              <div class="cert-banner cert-banner--genai">
+                <span class="cert-verify">Verified</span>
+                <div class="cert-seal" aria-hidden="true">GEN AI</div>
+                <div class="cert-brand">Nasscom</div>
+                <span class="cert-shine"></span>
+              </div>
+              <div class="cert-info">
+                <span class="cert-tag">Certification</span>
+                <h3 class="cert-name">Adobe Creativity &amp; GenAI</h3>
+                <p class="cert-issuer">IT-ITeS Sector Skills Council Nasscom</p>
+                <p class="cert-date">Issued Oct 28, 2026</p>
+                <p class="cert-description">Recognizes successful completion of an assessment on Adobe Creativity &amp; GenAI, aligned to Nasscom competency standards.</p>
+              </div>
+              <div class="front-links">
+                <a href="assets/gen_ai.pdf" target="_blank" rel="noopener">View certificate</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cert 8: Agentic AI Fundamentals -->
+        <div class="cert-card-3d reveal delay-7">
+          <div class="cert-card-inner">
+            <div class="cert-face cert-face-front cert-card">
+              <div class="cert-banner cert-banner--agentic">
+                <span class="cert-verify">Verified</span>
+                <div class="cert-seal" aria-hidden="true">AI</div>
+                <div class="cert-brand">Nasscom</div>
+                <span class="cert-shine"></span>
+              </div>
+              <div class="cert-info">
+                <span class="cert-tag">Certification</span>
+                <h3 class="cert-name">Agentic AI Fundamentals</h3>
+                <p class="cert-issuer">IT-ITeS Sector Skills Council Nasscom</p>
+                <p class="cert-date">Issued Oct 28, 2026</p>
+                <p class="cert-description">Recognizes successful completion of an assessment on Agentic AI Fundamentals, aligned to Nasscom competency standards.</p>
+              </div>
+              <div class="front-links">
+                <a href="assets/agentic_ai.pdf" target="_blank" rel="noopener">View certificate</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+          </div>
+
+          <div class="book-controls" aria-label="Certificate book controls">
+            <button type="button" class="book-control" id="book-previous" aria-label="Previous certificate" disabled>&larr; Previous</button>
+            <span class="book-page-count" id="book-page-count" aria-live="polite">01 / 08</span>
+            <button type="button" class="book-control" id="book-next" aria-label="Next certificate">Next &rarr;</button>
+            <button type="button" class="book-close" id="book-close">Close book</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -818,25 +765,33 @@
         </div>
 
         <p class="contact-sub reveal">
-          Open for full time role in remote or on-site mode.
-          Whether it&rsquo;s security research or shipping a product &mdash; let&rsquo;s talk.
+          Available for full-time roles, remote or on-site.
+          I am interested in security work and software development.
         </p>
 
         <div class="contact-cards reveal">
           <a href="mailto:priyanshavkmr6@gmail.com" class="contact-card">
-            <span class="c-icon">&#x2709;&#xFE0F;</span>
+            <span class="c-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg>
+            </span>
             <div><div class="c-label">EMAIL</div><div class="c-value">priyanshavkmr6@gmail.com</div></div>
           </a>
           <a href="tel:+917979923120" class="contact-card">
-            <span class="c-icon">&#x1F4DE;</span>
+            <span class="c-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.2 3.5h3l1.4 4.1-2 1.8a15 15 0 0 0 5 5l1.8-2 4.1 1.4v3a2 2 0 0 1-2.2 2 16.8 16.8 0 0 1-14.9-14.9 2 2 0 0 1 2-2.4Z" /></svg>
+            </span>
             <div><div class="c-label">PHONE</div><div class="c-value">+91 79799 23120</div></div>
           </a>
           <a href="https://linkedin.com/in/priyanshu-niet" target="_blank" rel="noopener noreferrer" class="contact-card">
-            <span class="c-icon">&#x1F4BC;</span>
+            <span class="c-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.2 3.5a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM3.5 9h3.4v11.5H3.5V9Zm5.5 0h3.2v1.6h.1A3.5 3.5 0 0 1 15.5 8.7c3.5 0 4.2 2.3 4.2 5.3v6.5h-3.4v-5.8c0-1.4 0-3.2-2-3.2s-2.3 1.5-2.3 3.1v5.9H9V9Z" /></svg>
+            </span>
             <div><div class="c-label">LINKEDIN</div><div class="c-value">linkedin.com/in/priyanshu-niet</div></div>
           </a>
           <a href="https://github.com/Priyanshav" target="_blank" rel="noopener noreferrer" class="contact-card">
-            <span class="c-icon">&#x2328;&#xFE0F;</span>
+            <span class="c-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.6.1.8-.2.8-.5v-2c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.6-1.3-1.6-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C17.1 4.4 18 4.7 18 4.7c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.6-2.8 5.6-5.4 5.9.4.3.8 1 .8 2v3c0 .3.2.6.8.5A11.1 11.1 0 0 0 12 .9Z" /></svg>
+            </span>
             <div><div class="c-label">GITHUB</div><div class="c-value">github.com/Priyanshav</div></div>
           </a>
         </div>
@@ -856,28 +811,13 @@
   ============================================= -->
   <footer>
     Built by <span>Priyanshu Kumar</span>
-    &nbsp;&middot;&nbsp; Dev &amp; Security
-    &nbsp;&middot;&nbsp; <span>&lt;/&gt;</span> with &#x1F512; &amp; &#x2615;
+    &nbsp;&middot;&nbsp; Software development and security
   </footer>
 
-  <!-- =============================================
-       SCRIPTS — all logic in separate .js files
-  ============================================= -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-
-  <script src="js/particles.js"></script>
-  <script src="js/typing.js"></script>
+  <!-- Page behavior and live GitHub profile data -->
   <script src="js/main.js"></script>
-  <script src="js/enhance.js"></script>
   <script src="js/github.js"></script>
-  <script src="js/cyber.js"></script>
   <script src="js/tuf.js"></script>
-  <script src="js/cursor.js"></script>
-  <script src="js/loader.js"></script>
-  <script src="js/premium.js"></script>
-  <script src="js/three-scene.js"></script>
-  <script src="js/three-cards.js"></script>
-  <script src="js/cyber-bg.js"></script>
 
 </body>
 </html>
