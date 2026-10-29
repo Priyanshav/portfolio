@@ -2181,6 +2181,12 @@ button:focus-visible {
     grid-template-columns: 1fr !important;
   }
 
+  #stats .stats-grid > .gh-card {
+    align-self: start;
+    height: fit-content;
+    min-height: 0;
+  }
+
   .tuf-body {
     gap: 18px;
     padding: 20px 14px;
